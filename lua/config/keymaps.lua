@@ -145,6 +145,9 @@ function M.init()
     ["<C-j>"] = { mode = { "n", "i", "x" }, "<cmd>SmartCursorMoveDown<cr>", "Go to lower window" },
     ["<C-k>"] = { mode = { "n", "i", "x" }, "<cmd>SmartCursorMoveUp<cr>", "Go to upper window" },
     ["<C-l>"] = { mode = { "n", "i", "x" }, "<cmd>SmartCursorMoveRight<cr>", "Go to right window" },
+    -- Buffers
+    H = { "<cmd>bprev<cr>", "Previous Buffer" },
+    L = { "<cmd>bnext<cr>", "Next Buffer" },
     -- Quick save
     ["<C-s>"] = { mode = { "n", "i", "x", "s" }, "<cmd>w<cr><esc>", "Save file" },
     -- Indent lines
