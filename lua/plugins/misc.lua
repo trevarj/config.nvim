@@ -1,5 +1,4 @@
 return {
-  { "folke/neodev.nvim", ft = "lua" },
   {
     "mrjones2014/smart-splits.nvim",
     lazy = false,

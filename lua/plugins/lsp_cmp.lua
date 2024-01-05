@@ -91,10 +91,11 @@ return {
     "neovim/nvim-lspconfig",
     lazy = false,
     dependencies = {
-      { "folke/neoconf.nvim", config = false, dependencies = { "nvim-lspconfig" } },
+      { "folke/neoconf.nvim", config = false },
+      { "folke/neodev.nvim",  opts = {} },
       "mason.nvim",
       "williamboman/mason-lspconfig.nvim",
-      { "j-hui/fidget.nvim",  opts = {} },
+      { "j-hui/fidget.nvim", opts = {} },
     },
     ---@class PluginLspOpts
     opts = function()

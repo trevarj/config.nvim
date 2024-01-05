@@ -11,11 +11,11 @@ return {
     opts = function(_, _)
       local colors = require("nord.colors").palette
       return {
-        transparent = false, -- Enable this to disable setting the background color
-        terminal_colors = true, -- Configure the colors used when opening a `:terminal` in Neovim
-        diff = { mode = "fg" }, -- enables/disables colorful backgrounds when used in diff mode. values : [bg|fg]
-        borders = true, -- Enable the border between verticaly split windows visible
-        errors = { mode = "fg" }, -- Display mode for errors and diagnostics
+        transparent = false,        -- Enable this to disable setting the background color
+        terminal_colors = true,     -- Configure the colors used when opening a `:terminal` in Neovim
+        diff = { mode = "fg" },     -- enables/disables colorful backgrounds when used in diff mode. values : [bg|fg]
+        borders = true,             -- Enable the border between verticaly split windows visible
+        errors = { mode = "fg" },   -- Display mode for errors and diagnostics
         -- values : [bg|fg|none]
         search = { theme = "vim" }, -- theme for highlighting search results
         -- values : [vim|vscode]
@@ -53,6 +53,8 @@ return {
           hl.GitSignsCurrentLineBlame = { fg = c.polar_night.light }
           hl.MatchParen = { fg = c.aurora.yellow, bg = c.frost.artic_ocean }
           hl.TreesitterContext = { bg = c.polar_night.bright }
+          hl.WarningMsg = { fg = c.aurora.yellow }
+          hl.ErrorMsg = { fg = c.aurora.red }
           -- hl.NonText = { fg = c.polar_night.light }
         end,
       }
