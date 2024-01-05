@@ -16,7 +16,7 @@ return {
       nord.normal.c.fg = colors.snow_storm.origin
       nord.normal.c.bg = colors.polar_night.origin
       nord.insert.a.bg = colors.aurora.orange
-      nord.inactive.a.fg = '#768fbc'
+      nord.inactive.a.fg = colors.frost.artic_water
       nord.inactive.a.bg = colors.polar_night.bright
 
       opts.options = {

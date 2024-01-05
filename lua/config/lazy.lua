@@ -55,7 +55,7 @@ local lazy_opts = {
     size = { width = 0.8, height = 0.8 },
     wrap = true, -- wrap the lines in the ui
     -- The border to use for the UI window. Accepts same border values as |nvim_open_win()|.
-    border = "none",
+    border = "rounded",
     title = nil, ---@type string only works when border is not "none"
     title_pos = "center", ---@type "center" | "left" | "right"
     -- Show pills on top of the Lazy window
@@ -92,16 +92,6 @@ local lazy_opts = {
       -- You can define custom key maps here. If present, the description will
       -- be shown in the help menu.
       -- To disable one of the defaults, set it to false.
-
-      ["<localleader>l"] = {
-        function(plugin)
-          require("lazy.util").float_term({ "lazygit", "log" }, {
-            cwd = plugin.dir,
-          })
-        end,
-        desc = "Open lazygit log",
-      },
-
       ["<localleader>t"] = {
         function(plugin)
           require("lazy.util").float_term(nil, {
