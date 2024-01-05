@@ -48,6 +48,7 @@ end
 
 function M.init()
   local wk = require("which-key")
+  local t = require("telescope.builtin")
   wk.register({
     ["<leader>"] = {
       b = {
@@ -64,7 +65,7 @@ function M.init()
       },
       C = {
         function()
-          require("telescope.builtin").find_files({ cwd = vim.fn.stdpath("config") })
+          t.find_files({ cwd = vim.fn.stdpath("config") })
         end,
         "Config Files",
       },
@@ -74,7 +75,7 @@ function M.init()
         b = { "<cmd>Telescope buffers<cr>", "Find Buffers" },
         h = {
           function()
-            require("telescope.builtin").find_files({
+            t.find_files({
               no_ignore = true,
               hidden = true,
             })
@@ -123,7 +124,14 @@ function M.init()
         },
         q = { "<cmd>qa<cr>", "Quit all" },
       },
-      [" "] = { "<cmd>Telescope find_files<cr>", "Find Files" },
+      [" "] = {
+        function()
+          t.find_files({
+            cwd = require("telescope.utils").buffer_dir(),
+            no_ignore = true,
+            hidden = true,
+          })
+        end, "Find Files" },
       ["/"] = { "<cmd>Telescope live_grep<cr>", "Grep (cwd)" },
       ["|"] = { "<cmd>vsplit<cr>", "Vertical Split" },
       ["-"] = { "<cmd>split<cr>", "Horizontal Split" },
