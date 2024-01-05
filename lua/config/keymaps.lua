@@ -127,7 +127,6 @@ function M.init()
       [" "] = {
         function()
           t.find_files({
-            cwd = require("telescope.utils").buffer_dir(),
             no_ignore = true,
             hidden = true,
           })
