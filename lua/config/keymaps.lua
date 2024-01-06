@@ -8,6 +8,7 @@ function M.lsp_attach(buffer)
   end
 
   map("n", "<leader>ca", lsp.code_action, "Code Action")
+  map("n", "<leader>cd", t.diagnostics, "Code Action")
   map("n", "<leader>cf", lsp.format, "Code Format")
   map("n", "<leader>cr", lsp.rename, "Rename")
   map("n", "<leader>cs", t.lsp_document_symbols, "Document Symbols")
