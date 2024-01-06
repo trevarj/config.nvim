@@ -126,11 +126,13 @@ function M.init()
       },
       [" "] = {
         function()
-          t.find_files({
+          t.git_files({
             no_ignore = true,
             hidden = true,
           })
-        end, "Find Files" },
+        end,
+        "Git Files",
+      },
       ["/"] = { "<cmd>Telescope live_grep<cr>", "Grep (cwd)" },
       ["|"] = { "<cmd>vsplit<cr>", "Vertical Split" },
       ["-"] = { "<cmd>split<cr>", "Horizontal Split" },
@@ -156,6 +158,12 @@ function M.init()
     ["<esc>"] = { mode = { "n", "i" }, "<cmd>noh<cr><esc>", "Clear Search Highlighting" },
     ["<esc><esc>"] = { mode = { "t" }, "<C-\\><C-n>", "Escape terminal mode" },
   })
+
+  -- Better Up/Down, keeps selection when moving lines in visual mode
+  wk.register({
+    j = { "v:count == 0 ? 'gj' : 'j'", "Down" },
+    k = { "v:count == 0 ? 'gk' : 'k'", "Up" }
+  }, { mode = { "n", "x" }, expr = true, silent = true })
 
   -- Moving lines
   wk.register({

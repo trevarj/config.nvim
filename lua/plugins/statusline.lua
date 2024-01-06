@@ -7,6 +7,7 @@ return {
       local colors = require("nord.colors").palette
       local nord = require("lualine.themes.nord")
       local icons = require("config.icons")
+      local lazy_status = require("lazy.status")
       local opts = {}
 
       nord.normal.a.fg = colors.polar_night.origin
@@ -112,6 +113,10 @@ return {
               info = icons.info,
               hint = icons.hint,
             },
+          },
+          {
+            lazy_status.updates,
+            cond = lazy_status.has_updates,
           },
         },
         lualine_y = {
