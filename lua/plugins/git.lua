@@ -18,6 +18,7 @@ return {
         virt_text_priority = 100,
         delay = 1000,
       },
+      _signs_staged_enable = true,
       on_attach = function(buffer)
         local gs = package.loaded.gitsigns
         require("config.keymaps").git_attach(gs, buffer)
