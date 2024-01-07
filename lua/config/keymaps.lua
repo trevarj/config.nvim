@@ -2,21 +2,23 @@ local M = {}
 
 function M.lsp_attach(buffer)
   local lsp = vim.lsp.buf
-  local t = require("telescope.builtin")
+  local t = function(func)
+    return string.format("<cmd>Telescope %s", func)
+  end
   local function map(mode, l, r, desc)
     vim.keymap.set(mode, l, r, { buffer = buffer, desc = "LSP: " .. desc })
   end
 
   map("n", "<leader>ca", lsp.code_action, "Code Action")
-  map("n", "<leader>cd", t.diagnostics, "Code Action")
+  map("n", "<leader>cd", t("diagnostics"), "Code Action")
   map("n", "<leader>cf", lsp.format, "Code Format")
   map("n", "<leader>cr", lsp.rename, "Rename")
-  map("n", "<leader>cs", t.lsp_document_symbols, "Document Symbols")
-  map("n", "gd", t.lsp_definitions, "Goto Definition")
-  map("n", "gr", t.lsp_references, "Goto References")
+  map("n", "<leader>cs", t("lsp_document_symbols"), "Document Symbols")
+  map("n", "gd", t("lsp_definitions"), "Goto Definition")
+  map("n", "gr", t("lsp_references"), "Goto References")
   map("n", "gD", lsp.declaration, "Goto Declaration")
-  map("n", "gI", t.lsp_implementations, "Goto Implementations")
-  map("n", "gy", t.lsp_type_definitions, "Goto Type Definition")
+  map("n", "gI", t("lsp_implementations"), "Goto Implementations")
+  map("n", "gy", t("lsp_type_definitions"), "Goto Type Definition")
   map("n", "K", lsp.hover, "Hover Documentation")
   map("n", "gK", lsp.signature_help, "Signature Help")
   map("i", "<C-k>", lsp.signature_help, "Signature Help")
@@ -49,7 +51,9 @@ end
 
 function M.init()
   local wk = require("which-key")
-  local t = require("telescope.builtin")
+  local t = function()
+    return require("telescope.builtin")
+  end
   wk.register({
     ["<leader>"] = {
       b = {
@@ -66,7 +70,7 @@ function M.init()
       },
       C = {
         function()
-          t.find_files({ cwd = vim.fn.stdpath("config") })
+          t().find_files({ cwd = vim.fn.stdpath("config") })
         end,
         "Config Files",
       },
@@ -76,7 +80,7 @@ function M.init()
         b = { "<cmd>Telescope buffers<cr>", "Find Buffers" },
         h = {
           function()
-            t.find_files({
+            t().find_files({
               no_ignore = true,
               hidden = true,
             })
@@ -127,7 +131,7 @@ function M.init()
       },
       [" "] = {
         function()
-          t.git_files({
+          t().git_files({
             no_ignore = true,
             hidden = true,
           })

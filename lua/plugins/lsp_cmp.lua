@@ -89,13 +89,14 @@ return {
 
   {
     "neovim/nvim-lspconfig",
-    lazy = false,
+    event = { "BufReadPost", "BufNewFile", "BufWritePre" },
     dependencies = {
       { "folke/neoconf.nvim", config = false },
       { "folke/neodev.nvim",  opts = {} },
       "mason.nvim",
       "williamboman/mason-lspconfig.nvim",
       { "j-hui/fidget.nvim", opts = {} },
+      "nvim-telescope/telescope.nvim",
     },
     ---@class PluginLspOpts
     opts = function()
