@@ -1,3 +1,4 @@
+local keys = require("config.keymaps")
 return {
   {
     "windwp/nvim-autopairs",
@@ -5,16 +6,16 @@ return {
     config = true,
   },
   {
-    "numToStr/Comment.nvim",
-    lazy = false,
+    "echasnovski/mini.comment",
+    keys = keys.comment(),
     opts = {}
   },
   {
     "kylechui/nvim-surround",
-    keys = require("config.keymaps").nvim_surround().keys,
+    keys = keys.nvim_surround().keys,
     config = true,
     opts = {
-      keymaps = require("config.keymaps").nvim_surround().keymaps,
+      keymaps = keys.nvim_surround().keymaps,
     },
   },
 }

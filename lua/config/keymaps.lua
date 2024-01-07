@@ -75,6 +75,15 @@ function M.nvim_surround()
   return { keys = keys, keymaps = keymaps }
 end
 
+function M.comment()
+  return {
+    { "gc",  mode = { "n", "x" }, desc = "Comment Motion" },
+    { "gcc", mode = "n",          desc = "Comment Line" },
+    { "gc",  mode = "v",          desc = "Comment Selection" },
+    { "gc",  mode = "n",          desc = "Action on Comment" },
+  }
+end
+
 function M.init()
   local wk = require("which-key")
   local t = function()
