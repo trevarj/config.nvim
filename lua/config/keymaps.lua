@@ -144,10 +144,10 @@ function M.init()
     ["]d"] = { "<cmd>lua vim.diagnostic.goto_next()<cr>", "Next Diagnostic" },
     ["]e"] = { "<cmd>lua vim.diagnostic.goto_next({ severity = 'ERROR' })<cr>", "Next Diagnostic" },
     -- Move to tmux window using the <ctrl> hjkl keys
-    ["<C-h>"] = { mode = { "n", "i", "x" }, "<cmd>SmartCursorMoveLeft<cr>", "Go to left window" },
-    ["<C-j>"] = { mode = { "n", "i", "x" }, "<cmd>SmartCursorMoveDown<cr>", "Go to lower window" },
-    ["<C-k>"] = { mode = { "n", "i", "x" }, "<cmd>SmartCursorMoveUp<cr>", "Go to upper window" },
-    ["<C-l>"] = { mode = { "n", "i", "x" }, "<cmd>SmartCursorMoveRight<cr>", "Go to right window" },
+    ["<C-h>"] = { mode = { "n", "i", "x", "t" }, "<cmd>SmartCursorMoveLeft<cr>", "Go to left window" },
+    ["<C-j>"] = { mode = { "n", "i", "x", "t" }, "<cmd>SmartCursorMoveDown<cr>", "Go to lower window" },
+    ["<C-k>"] = { mode = { "n", "i", "x", "t" }, "<cmd>SmartCursorMoveUp<cr>", "Go to upper window" },
+    ["<C-l>"] = { mode = { "n", "i", "x", "t" }, "<cmd>SmartCursorMoveRight<cr>", "Go to right window" },
     -- Buffers
     H = { "<cmd>bprev<cr>", "Previous Buffer" },
     L = { "<cmd>bnext<cr>", "Next Buffer" },
