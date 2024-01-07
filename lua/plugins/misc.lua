@@ -5,7 +5,7 @@ return {
   },
   {
     "max397574/better-escape.nvim",
-    lazy = false,
+    event = "VeryLazy",
     opts = {
       mapping = { "ww" },
       timeout = vim.o.timeoutlen,
