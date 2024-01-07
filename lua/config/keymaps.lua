@@ -94,7 +94,13 @@ function M.init()
         f = { "<cmd>Telescope find_files<cr>", "Find Files" },
         r = { "<cmd>Telescope oldfiles<cr>", "Open Recent Files" },
       },
-      g = { name = "Git", h = { "Hunks" } },
+      g = {
+        name = "Git",
+        b = { "<cmd>Telescope git_branches<cr>", "Branches" },
+        c = { "<cmd>Telescope git_commits<cr>", "Commits" },
+        h = { "Hunks" },
+        s = { "<cmd>Telescope git_status<cr>", "Status" }
+      },
       l = { "<cmd>Lazy<cr>", "Lazy" },
       s = {
         name = "Search",
