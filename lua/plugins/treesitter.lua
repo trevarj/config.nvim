@@ -2,7 +2,7 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
-    event = "VeryLazy",
+    event = { "BufReadPost", "BufNewFile", "BufWritePre" },
     init = function(plugin)
       -- PERF: add nvim-treesitter queries to the rtp and it's custom query predicates early
       -- This is needed because a bunch of plugins no longer `require("nvim-treesitter")`, which
@@ -37,6 +37,11 @@ return {
             end
           end
         end,
+      },
+      -- Show context of the current function
+      {
+        "nvim-treesitter/nvim-treesitter-context",
+        opts = { enable = true, mode = "cursor", max_lines = 1, separator = nil },
       },
     },
     cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
@@ -110,12 +115,5 @@ return {
     config = function(_, opts)
       require("nvim-treesitter.configs").setup(opts)
     end,
-  },
-
-  -- Show context of the current function
-  {
-    "nvim-treesitter/nvim-treesitter-context",
-    event = "VeryLazy",
-    opts = { enable = true, mode = "cursor", max_lines = 1, separator = nil },
   },
 }

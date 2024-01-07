@@ -49,6 +49,32 @@ function M.git_attach(gs, buffer)
   map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
 end
 
+function M.nvim_surround()
+  local pfx = "surround: "
+  local m = {
+    { "i", "insert",          "<C-g>s", pfx .. "cursor" },
+    { "i", "insert_line",     "<C-g>S", pfx .. "cursor newline" },
+    { "n", "normal",          "gs",     pfx .. "motion" },
+    { "n", "normal_cur",      "gss",    pfx .. "current line" },
+    { "n", "normal_line",     "gsS",    pfx .. "current line on newlines" },
+    { "n", "normal_cur_line", "gsN",    pfx .. "motion on newlines" },
+    { "x", "visual",          "S",      pfx .. "visual selection" },
+    { "x", "visual_line",     "gS",     pfx .. "visual selection on newlines" },
+    { "n", "delete",          "ds",     pfx .. "delete motion" },
+    { "n", "change",          "cs",     pfx .. "change pairs" },
+    { "n", "change_line",     "cS",     pfx .. "change pairs on newlines" },
+  }
+  local keys = {}
+  local keymaps = {}
+  for _, v in ipairs(m)
+  do
+    table.insert(keys, { v[3], mode = v[1], desc = v[4] })
+    keymaps[v[2]] = v[3]
+  end
+
+  return { keys = keys, keymaps = keymaps }
+end
+
 function M.init()
   local wk = require("which-key")
   local t = function()
