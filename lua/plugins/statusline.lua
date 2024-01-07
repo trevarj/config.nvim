@@ -54,8 +54,13 @@ return {
         },
       }
 
+      local recording_macro = function()
+        local key = vim.fn.reg_recording()
+        if key ~= "" then return string.format("recording @%s", key) else return "" end
+      end
+
       opts.sections = {
-        lualine_a = { "mode" },
+        lualine_a = { { "mode" }, { recording_macro, padding = { left = 0, right = 1 } } },
         lualine_b = {
           { "branch" },
           {
