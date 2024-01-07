@@ -1,7 +1,7 @@
 return {
   {
     "mrjones2014/smart-splits.nvim",
-    lazy = false,
+    cmd = { "SmartCursorMoveUp", "SmartCursorMoveDown", "SmartCursorMoveLeft", "SmartCursorMoveRight" }
   },
   {
     "max397574/better-escape.nvim",
