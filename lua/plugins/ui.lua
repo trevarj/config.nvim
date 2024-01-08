@@ -61,6 +61,29 @@ return {
     end,
   },
   {
+    "rmehri01/onenord.nvim",
+    lazy = true,
+    priority = 1000,
+    config = function(_, opts)
+      require("onenord").setup(opts)
+      vim.cmd.colorscheme("onenord")
+    end,
+    opts = function(_, _)
+      local colors = require("onenord.colors").load()
+      return {
+        disable = {
+          float_background = true,
+        },
+        custom_highlights = {
+          ["MatchParen"] = { bg = colors.dark_blue },
+        },
+        custom_colors = {
+
+        }
+      }
+    end
+  },
+  {
     "nvim-neo-tree/neo-tree.nvim",
     cmd = "Neotree",
     dependencies = {
@@ -90,4 +113,9 @@ return {
     end,
     opts = {},
   },
+  {
+    "NvChad/nvim-colorizer.lua",
+    cmd = "ColorizerToggle",
+    opts = {}
+  }
 }

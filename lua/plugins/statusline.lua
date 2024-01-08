@@ -1,3 +1,29 @@
+local function nord_theme()
+  local colors = require("nord.colors").palette
+  local nord = require("lualine.themes.nord")
+
+  nord.normal.a.fg = colors.polar_night.origin
+  nord.normal.a.bg = colors.frost.artic_water
+  nord.normal.b.fg = colors.snow_storm.origin
+  nord.normal.b.bg = colors.polar_night.bright
+  nord.normal.c.fg = colors.snow_storm.origin
+  nord.normal.c.bg = colors.polar_night.origin
+  nord.insert.a.bg = colors.aurora.orange
+  nord.inactive.a.fg = colors.frost.artic_water
+  nord.inactive.a.bg = colors.polar_night.bright
+  return nord
+end
+
+local function theme()
+  local colorscheme = vim.g.colors_name
+  if colorscheme == "nord" then
+    return nord_theme()
+  else
+    -- fails if using a colorscheme that doesn't exist in lualine
+    return colorscheme
+  end
+end
+
 return {
   {
     "nvim-lualine/lualine.nvim",
@@ -5,24 +31,12 @@ return {
     event = "VeryLazy",
     opts = function()
       -- NOTE statusline goes away if not using noice or something to keep it refreshing, i think
-      local colors = require("nord.colors").palette
-      local nord = require("lualine.themes.nord")
       local icons = require("config.icons")
       local lazy_status = require("lazy.status")
       local opts = {}
 
-      nord.normal.a.fg = colors.polar_night.origin
-      nord.normal.a.bg = colors.frost.artic_water
-      nord.normal.b.fg = colors.snow_storm.origin
-      nord.normal.b.bg = colors.polar_night.bright
-      nord.normal.c.fg = colors.snow_storm.origin
-      nord.normal.c.bg = colors.polar_night.origin
-      nord.insert.a.bg = colors.aurora.orange
-      nord.inactive.a.fg = colors.frost.artic_water
-      nord.inactive.a.bg = colors.polar_night.bright
-
       opts.options = {
-        theme = nord,
+        theme = theme(),
         component_separators = { left = "", right = "" },
         section_separators = { left = "", right = "" },
         disabled_filetypes = { -- Filetypes to disable lualine for.
