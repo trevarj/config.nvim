@@ -3,7 +3,7 @@ local M = {}
 function M.lsp_attach(buffer)
   local lsp = vim.lsp.buf
   local t = function(func)
-    return string.format("<cmd>Telescope %s", func)
+    return string.format("<cmd>Telescope %s<cr>", func)
   end
   local function map(mode, l, r, desc)
     vim.keymap.set(mode, l, r, { buffer = buffer, desc = "LSP: " .. desc })
@@ -50,37 +50,34 @@ function M.git_attach(gs, buffer)
 end
 
 function M.nvim_surround()
-  local pfx = "surround: "
+  local pfx = "Surround: "
   local m = {
-    { "i", "insert",          "<C-g>s", pfx .. "cursor" },
-    { "i", "insert_line",     "<C-g>S", pfx .. "cursor newline" },
-    { "n", "normal",          "gs",     pfx .. "motion" },
-    { "n", "normal_cur",      "gss",    pfx .. "current line" },
-    { "n", "normal_line",     "gsS",    pfx .. "current line on newlines" },
-    { "n", "normal_cur_line", "gsN",    pfx .. "motion on newlines" },
-    { "x", "visual",          "S",      pfx .. "visual selection" },
-    { "x", "visual_line",     "gS",     pfx .. "visual selection on newlines" },
-    { "n", "delete",          "ds",     pfx .. "delete motion" },
-    { "n", "change",          "cs",     pfx .. "change pairs" },
-    { "n", "change_line",     "cS",     pfx .. "change pairs on newlines" },
+    { "i", "<C-g>s", "<Plug>(nvim-surround-insert)",          pfx .. "Cursor" },
+    { "i", "<C-g>S", "<Plug>(nvim-surround-insert-line)",     pfx .. "Cursor newline" },
+    { "n", "gs",     "<Plug>(nvim-surround-normal)",          pfx .. "Motion" },
+    { "n", "gss",    "<Plug>(nvim-surround-normal-cur)",      pfx .. "Current line" },
+    { "n", "gsS",    "<Plug>(nvim-surround-normal-line)",     pfx .. "Current line on newlines" },
+    { "n", "gsN",    "<Plug>(nvim-surround-normal-cur-line)", pfx .. "On newlines" },
+    { "x", "S",      "<Plug>(nvim-surround-visual)",          pfx .. "Visual selection" },
+    { "x", "gS",     "<Plug>(nvim-surround-visual-line)",     pfx .. "Visual selection on newlines" },
+    { "n", "ds",     "<Plug>(nvim-surround-delete)",          pfx .. "Delete" },
+    { "n", "cs",     "<Plug>(nvim-surround-change)",          pfx .. "Change pairs" },
+    { "n", "cS",     "<Plug>(nvim-surround-change-line)",     pfx .. "Change pairs on newlines" },
   }
   local keys = {}
-  local keymaps = {}
   for _, v in ipairs(m)
   do
-    table.insert(keys, { v[3], mode = v[1], desc = v[4] })
-    keymaps[v[2]] = v[3]
+    table.insert(keys, { v[2], v[3], mode = v[1], desc = v[4] })
   end
-
-  return { keys = keys, keymaps = keymaps }
+  return keys
 end
 
 function M.comment()
   return {
-    { "gc",  mode = { "n", "x" }, desc = "Comment Motion" },
-    { "gcc", mode = "n",          desc = "Comment Line" },
-    { "gc",  mode = "v",          desc = "Comment Selection" },
-    { "gc",  mode = "n",          desc = "Action on Comment" },
+    { "gc",  mode = { "n", "x" }, desc = "Comment" },
+    { "gcc", mode = "n",          desc = "Comment line" },
+    { "gc",  mode = "v",          desc = "Comment selection" },
+    { "gc",  mode = "o",          desc = "Comment textobject" },
   }
 end
 
@@ -188,6 +185,9 @@ function M.init()
     ["[e"] = { "<cmd>lua vim.diagnostic.goto_prev({ severity = 'ERROR' })<cr>", "Prev Diagnostic" },
     ["]d"] = { "<cmd>lua vim.diagnostic.goto_next()<cr>", "Next Diagnostic" },
     ["]e"] = { "<cmd>lua vim.diagnostic.goto_next({ severity = 'ERROR' })<cr>", "Next Diagnostic" },
+    -- Center on half page jump
+    ["<C-d>"] = { "<C-d>zz", "Half page down" },
+    ["<C-u>"] = { "<C-u>zz", "Half page up" },
     -- Move to tmux window using the <ctrl> hjkl keys
     ["<C-h>"] = { mode = { "n", "i", "x", "t" }, "<cmd>SmartCursorMoveLeft<cr>", "Go to left window" },
     ["<C-j>"] = { mode = { "n", "i", "x", "t" }, "<cmd>SmartCursorMoveDown<cr>", "Go to lower window" },

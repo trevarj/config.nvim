@@ -12,10 +12,11 @@ return {
   },
   {
     "kylechui/nvim-surround",
-    keys = keys.nvim_surround().keys,
+    keys = keys.nvim_surround(),
     config = true,
-    opts = {
-      keymaps = keys.nvim_surround().keymaps,
-    },
+    opts = function(_, opts)
+      -- handle mappings manually
+      opts.keymaps = {}
+    end,
   },
 }
