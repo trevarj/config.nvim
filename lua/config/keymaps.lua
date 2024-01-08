@@ -119,6 +119,15 @@ function M.init()
           end,
           "Find Files (no ignore)",
         },
+        H = {
+          function()
+            t().find_files({
+              cwd = "~",
+              hidden = true,
+            })
+          end,
+          "Find Files (home)",
+        },
         j = { "<cmd>Telescope jumplist<cr>", "Jumplist" },
         l = { "<cmd>Telescope resume<cr>", "Last Search" },
         n = { "<cmd>enew<cr>", "New File" },
