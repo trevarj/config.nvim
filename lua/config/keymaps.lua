@@ -178,12 +178,17 @@ function M.init()
       },
       [" "] = {
         function()
-          t().git_files({
-            no_ignore = true,
-            hidden = true,
-          })
+          -- try git_files and fallback to find_files if not git dir
+          xpcall(function()
+            t().git_files({
+              no_ignore = true,
+              hidden = true,
+            })
+          end, function(_)
+            t().find_files()
+          end)
         end,
-        "Git Files",
+        "Find Files",
       },
       ["/"] = { "<cmd>Telescope live_grep<cr>", "Grep (cwd)" },
       ["|"] = { "<cmd>vsplit<cr>", "Vertical Split" },
