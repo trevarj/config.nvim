@@ -74,10 +74,10 @@ end
 
 function M.comment()
   return {
-    { "gc",  mode = { "n", "x" }, desc = "Comment" },
-    { "gcc", mode = "n",          desc = "Comment line" },
-    { "gc",  mode = "v",          desc = "Comment selection" },
-    { "gc",  mode = "o",          desc = "Comment textobject" },
+    { "gc",  mode = "n", desc = "Comment" },
+    { "gcc", mode = "n", desc = "Comment line" },
+    { "gc",  mode = "x", desc = "Comment selection" },
+    { "gc",  mode = "o", desc = "Comment textobject" },
   }
 end
 
