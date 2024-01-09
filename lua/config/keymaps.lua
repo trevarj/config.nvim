@@ -157,6 +157,7 @@ function M.init()
       u = {
         name = "UI",
         t = { "<cmd>TSContextToggle<cr>", "Toggle Treesitter Context" },
+        f = { "<cmd>ToggleFormat<cr>", "Toggle Format On Save" },
       },
       q = {
         name = "Quit",
