@@ -10,11 +10,12 @@ Making a note to my future self that this will probably become a huge hassle to
 maintain, which is why I used LazyVim in the first place. Hope not though!
 
 ## Features
-- [x] lazy.nvim
-- [x] Nord theme
-- [x] Built-in LSP with completions and mason
-- [x] Treesitter
-- [x] Telescope
-- [x] lualine.nvim statusline and bufferline
-- [x] My favorite keybindings
-- [x] Nice git integration
+
+- \[x\] lazy.nvim
+- \[x\] Nord theme
+- \[x\] Built-in LSP with completions and mason
+- \[x\] Treesitter
+- \[x\] Telescope
+- \[x\] lualine.nvim statusline and bufferline
+- \[x\] My favorite keybindings
+- \[x\] Nice git integration

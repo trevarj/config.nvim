@@ -11,7 +11,6 @@ function M.lsp_attach(buffer)
 
   map("n", "<leader>ca", lsp.code_action, "Code Action")
   map("n", "<leader>cd", t("diagnostics"), "Code Action")
-  map("n", "<leader>cf", lsp.format, "Code Format")
   map("n", "<leader>cr", lsp.rename, "Rename")
   map("n", "<leader>cs", t("lsp_document_symbols"), "Document Symbols")
   map("n", "gd", t("lsp_definitions"), "Goto Definition")
@@ -52,21 +51,20 @@ end
 function M.nvim_surround()
   local pfx = "Surround: "
   local m = {
-    { "i", "<C-g>s", "<Plug>(nvim-surround-insert)",          pfx .. "Cursor" },
-    { "i", "<C-g>S", "<Plug>(nvim-surround-insert-line)",     pfx .. "Cursor newline" },
-    { "n", "gs",     "<Plug>(nvim-surround-normal)",          pfx .. "Motion" },
-    { "n", "gss",    "<Plug>(nvim-surround-normal-cur)",      pfx .. "Current line" },
-    { "n", "gsS",    "<Plug>(nvim-surround-normal-line)",     pfx .. "Current line on newlines" },
-    { "n", "gsN",    "<Plug>(nvim-surround-normal-cur-line)", pfx .. "On newlines" },
-    { "x", "S",      "<Plug>(nvim-surround-visual)",          pfx .. "Visual selection" },
-    { "x", "gS",     "<Plug>(nvim-surround-visual-line)",     pfx .. "Visual selection on newlines" },
-    { "n", "ds",     "<Plug>(nvim-surround-delete)",          pfx .. "Delete" },
-    { "n", "cs",     "<Plug>(nvim-surround-change)",          pfx .. "Change pairs" },
-    { "n", "cS",     "<Plug>(nvim-surround-change-line)",     pfx .. "Change pairs on newlines" },
+    { "i", "<C-g>s", "<Plug>(nvim-surround-insert)", pfx .. "Cursor" },
+    { "i", "<C-g>S", "<Plug>(nvim-surround-insert-line)", pfx .. "Cursor newline" },
+    { "n", "gs", "<Plug>(nvim-surround-normal)", pfx .. "Motion" },
+    { "n", "gss", "<Plug>(nvim-surround-normal-cur)", pfx .. "Current line" },
+    { "n", "gsS", "<Plug>(nvim-surround-normal-line)", pfx .. "Current line on newlines" },
+    { "n", "gsN", "<Plug>(nvim-surround-normal-cur-line)", pfx .. "On newlines" },
+    { "x", "S", "<Plug>(nvim-surround-visual)", pfx .. "Visual selection" },
+    { "x", "gS", "<Plug>(nvim-surround-visual-line)", pfx .. "Visual selection on newlines" },
+    { "n", "ds", "<Plug>(nvim-surround-delete)", pfx .. "Delete" },
+    { "n", "cs", "<Plug>(nvim-surround-change)", pfx .. "Change pairs" },
+    { "n", "cS", "<Plug>(nvim-surround-change-line)", pfx .. "Change pairs on newlines" },
   }
   local keys = {}
-  for _, v in ipairs(m)
-  do
+  for _, v in ipairs(m) do
     table.insert(keys, { v[2], v[3], mode = v[1], desc = v[4] })
   end
   return keys
@@ -74,10 +72,10 @@ end
 
 function M.comment()
   return {
-    { "gc",  mode = "n", desc = "Comment" },
+    { "gc", mode = "n", desc = "Comment" },
     { "gcc", mode = "n", desc = "Comment line" },
-    { "gc",  mode = "x", desc = "Comment selection" },
-    { "gc",  mode = "o", desc = "Comment textobject" },
+    { "gc", mode = "x", desc = "Comment selection" },
+    { "gc", mode = "o", desc = "Comment textobject" },
   }
 end
 
@@ -99,6 +97,12 @@ function M.init()
       c = {
         name = "Code",
         l = { "<cmd>LspInfo<cr>", "LSP Info" },
+        f = {
+          function()
+            require("conform").format()
+          end,
+          "Format",
+        },
       },
       C = {
         function()
@@ -140,7 +144,7 @@ function M.init()
         b = { "<cmd>Telescope git_branches<cr>", "Branches" },
         c = { "<cmd>Telescope git_commits<cr>", "Commits" },
         h = { "Hunks" },
-        s = { "<cmd>Telescope git_status<cr>", "Status" }
+        s = { "<cmd>Telescope git_status<cr>", "Status" },
       },
       l = { "<cmd>Lazy<cr>", "Lazy" },
       s = {
@@ -222,7 +226,7 @@ function M.init()
   -- Better Up/Down, keeps selection when moving lines in visual mode
   wk.register({
     j = { "v:count == 0 ? 'gj' : 'j'", "Down" },
-    k = { "v:count == 0 ? 'gk' : 'k'", "Up" }
+    k = { "v:count == 0 ? 'gk' : 'k'", "Up" },
   }, { mode = { "n", "x" }, expr = true, silent = true })
 
   -- Moving lines

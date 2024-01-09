@@ -36,15 +36,15 @@ return {
       cmp.setup.cmdline(":", {
         mapping = cmp.mapping.preset.cmdline(),
         sources = cmp.config.sources({
-          { name = 'path' }
+          { name = "path" },
         }, {
           {
-            name = 'cmdline',
+            name = "cmdline",
             option = {
-              ignore_cmds = { 'Man', '!' }
-            }
-          }
-        })
+              ignore_cmds = { "Man", "!" },
+            },
+          },
+        }),
       })
       return {
         completion = {
@@ -106,7 +106,7 @@ return {
     event = { "BufReadPost", "BufNewFile", "BufWritePre" },
     dependencies = {
       { "folke/neoconf.nvim", config = false },
-      { "folke/neodev.nvim",  opts = {} },
+      { "folke/neodev.nvim", opts = {} },
       "mason.nvim",
       "williamboman/mason-lspconfig.nvim",
       { "j-hui/fidget.nvim", opts = {} },
@@ -198,7 +198,6 @@ return {
       vim.api.nvim_create_autocmd("LspAttach", {
         callback = function(args)
           vim.lsp.inlay_hint.enable()
-          vim.cmd([[autocmd BufWritePre * lua vim.lsp.buf.format()]])
           require("config.keymaps").lsp_attach(args.buf)
         end,
       })
@@ -340,6 +339,6 @@ return {
         -- DAP configuration
         dap = {},
       }
-    end
+    end,
   },
 }
