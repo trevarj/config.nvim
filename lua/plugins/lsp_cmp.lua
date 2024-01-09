@@ -314,15 +314,14 @@ return {
             require("config.keymaps").lsp_attach(bufnr)
           end,
           settings = {
-            -- rust-analyzer language server configuration
             ["rust-analyzer"] = {
               cargo = {
                 allFeatures = true,
                 loadOutDirsFromCheck = true,
                 runBuildScripts = true,
               },
-              -- Add clippy lints for Rust.
-              checkOnSave = {
+              checkOnSave = true,
+              check = {
                 allFeatures = false,
                 command = "clippy",
                 extraArgs = { "--no-deps" },
