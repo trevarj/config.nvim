@@ -50,19 +50,24 @@ end
 
 function M.nvim_surround()
   local pfx = "Surround: "
-  return {
-    { "<C-g>s", "<Plug>(nvim-surround-insert)", mode = "i", desc = pfx .. "Cursor" },
-    { "<C-g>S", "<Plug>(nvim-surround-insert-line)", mode = "i", desc = pfx .. "Cursor newline" },
-    { "gs", "<Plug>(nvim-surround-normal)", mode = "n", desc = pfx .. "Motion" },
-    { "gss", "<Plug>(nvim-surround-normal-cur)", mode = "n", desc = pfx .. "Current line" },
-    { "gsS", "<Plug>(nvim-surround-normal-line)", mode = "n", desc = pfx .. "Current line on newlines" },
-    { "gsN", "<Plug>(nvim-surround-normal-cur-line)", mode = "n", desc = pfx .. "On newlines" },
-    { "S", "<Plug>(nvim-surround-visual)", mode = "x", desc = pfx .. "Visual selection" },
-    { "gS", "<Plug>(nvim-surround-visual-line)", mode = "x", desc = pfx .. "Visual selection on newlines" },
-    { "ds", "<Plug>(nvim-surround-delete)", mode = "n", desc = pfx .. "Delete" },
-    { "cs", "<Plug>(nvim-surround-change)", mode = "n", desc = pfx .. "Change pairs" },
-    { "cS", "<Plug>(nvim-surround-change-line)", mode = "n", desc = pfx .. "Change pairs on newlines" },
+  local m = {
+    { "i", "<C-g>s", "<Plug>(nvim-surround-insert)", pfx .. "Cursor" },
+    { "i", "<C-g>S", "<Plug>(nvim-surround-insert-line)", pfx .. "Cursor newline" },
+    { "n", "gs", "<Plug>(nvim-surround-normal)", pfx .. "Motion" },
+    { "n", "gss", "<Plug>(nvim-surround-normal-cur)", pfx .. "Current line" },
+    { "n", "gsS", "<Plug>(nvim-surround-normal-line)", pfx .. "Current line on newlines" },
+    { "n", "gsN", "<Plug>(nvim-surround-normal-cur-line)", pfx .. "On newlines" },
+    { "x", "S", "<Plug>(nvim-surround-visual)", pfx .. "Visual selection" },
+    { "x", "gS", "<Plug>(nvim-surround-visual-line)", pfx .. "Visual selection on newlines" },
+    { "n", "ds", "<Plug>(nvim-surround-delete)", pfx .. "Delete" },
+    { "n", "cs", "<Plug>(nvim-surround-change)", pfx .. "Change pairs" },
+    { "n", "cS", "<Plug>(nvim-surround-change-line)", pfx .. "Change pairs on newlines" },
   }
+  local keys = {}
+  for _, v in ipairs(m) do
+    table.insert(keys, { v[2], v[3], mode = v[1], desc = v[4] })
+  end
+  return keys
 end
 
 function M.comment()
