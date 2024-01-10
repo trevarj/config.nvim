@@ -21,7 +21,6 @@ return {
     opts = {
       formatters_by_ft = {
         lua = { "stylua" },
-        markdown = { "mdformat" },
         sh = { "shfmt" },
       },
       format_on_save = function(_)

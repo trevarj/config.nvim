@@ -32,7 +32,7 @@
   "onenord.nvim": { "branch": "main", "commit": "879bc64ea4678bf32d2bfda47c4e3a04af52a448" },
   "persistence.nvim": { "branch": "main", "commit": "ad538bfd5336f1335cdb6fd4e0b0eebfa6e12f32" },
   "plenary.nvim": { "branch": "master", "commit": "55d9fe89e33efd26f532ef20223e5f9430c8b0c0" },
-  "rustaceanvim": { "branch": "master", "commit": "c8856f9ab078976422a04e857da3b6eadce7cd3d" },
+  "rustaceanvim": { "branch": "master", "commit": "207f2845f3cfb15840c8a94b2fb3077068ab25ac" },
   "smart-splits.nvim": { "branch": "master", "commit": "2009a38ac44ec7afa1a001e0dfa8358441510a64" },
   "telescope-fzf-native.nvim": { "branch": "main", "commit": "6c921ca12321edaa773e324ef64ea301a1d0da62" },
   "telescope-tmux.nvim": { "branch": "develop", "commit": "d7e64046fbea9f264be403a35e6c804c6e82ac0b" },

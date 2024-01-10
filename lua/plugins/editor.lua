@@ -8,15 +8,11 @@ return {
   {
     "echasnovski/mini.comment",
     keys = keys.comment(),
-    opts = {}
+    opts = {},
   },
   {
     "kylechui/nvim-surround",
     keys = keys.nvim_surround(),
-    config = true,
-    opts = function(_, opts)
-      -- handle mappings manually
-      opts.keymaps = {}
-    end,
+    opts = {},
   },
 }
