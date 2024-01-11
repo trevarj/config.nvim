@@ -190,10 +190,14 @@ return {
       local plugin = require("lazy.core.config").spec.plugins["neoconf.nvim"]
       require("neoconf").setup(require("lazy.core.plugin").values(plugin, "opts", false))
 
-      -- border around 'K' signature to match completion and diagnostics
+      -- set borders
       vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
         border = "rounded",
       })
+      vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+        border = "rounded",
+      })
+      require("lspconfig.ui.windows").default_options.border = "rounded"
 
       vim.api.nvim_create_autocmd("LspAttach", {
         callback = function(args)
