@@ -29,4 +29,9 @@ return {
       },
     },
   },
+  {
+    "nvim-pack/nvim-spectre",
+    keys = keys.spectre(),
+    opts = {},
+  },
 }

@@ -40,7 +40,7 @@ return {
         component_separators = { left = "", right = "" },
         section_separators = { left = "", right = "" },
         disabled_filetypes = { -- Filetypes to disable lualine for.
-          statusline = {},     -- only ignores the ft for statusline.
+          statusline = {}, -- only ignores the ft for statusline.
         },
 
         ignore_focus = { "neo-tree", "TelescopePrompt", "lazy", "mason" }, -- If current filetype is in this list it'll
@@ -58,10 +58,10 @@ return {
         -- at bottom of neovim instead of one for every window).
         -- This feature is only available in neovim 0.7 and higher.
 
-        refresh = {          -- sets how often lualine should refresh it's contents (in ms)
+        refresh = { -- sets how often lualine should refresh it's contents (in ms)
           statusline = 1000, -- The refresh option sets minimum time that lualine tries
-          tabline = 1000,    -- to maintain between refresh. It's not guarantied if situation
-          winbar = 1000,     -- arises that lualine needs to refresh itself before this time
+          tabline = 1000, -- to maintain between refresh. It's not guarantied if situation
+          winbar = 1000, -- arises that lualine needs to refresh itself before this time
           -- it'll do it.
 
           -- Also you can force lualine's refresh by calling refresh function
@@ -71,7 +71,11 @@ return {
 
       local recording_macro = function()
         local key = vim.fn.reg_recording()
-        if key ~= "" then return string.format("recording @%s", key) else return "" end
+        if key ~= "" then
+          return string.format("recording @%s", key)
+        else
+          return ""
+        end
       end
 
       opts.sections = {
@@ -100,7 +104,7 @@ return {
         lualine_c = {
           {
             "filename",
-            file_status = true,     -- Displays file status (readonly status, modified status)
+            file_status = true, -- Displays file status (readonly status, modified status)
             newfile_status = false, -- Display new file status (new file means no write after created)
             -- 0: Just the filename
             -- 1: Relative path
@@ -142,13 +146,13 @@ return {
         lualine_y = {
           { "searchcount" },
           { "selectioncount" },
-          { "location",      padding = { left = 1, right = 1 } },
-          { "progress",      separator = "",                   padding = { left = 0, right = 2 } },
+          { "location", padding = { left = 1, right = 1 } },
+          { "progress", separator = "", padding = { left = 0, right = 2 } },
         },
         lualine_z = {
           {
             "filetype",
-            colored = false,  -- Displays filetype icon in color if set to true
+            colored = false, -- Displays filetype icon in color if set to true
             icon_only = true, -- Display only an icon for filetype
             padding = {
               left = 1,

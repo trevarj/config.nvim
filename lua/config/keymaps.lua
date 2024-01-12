@@ -1,51 +1,56 @@
 local M = {}
 
+local function map(mode, l, r, desc, buffer)
+  vim.keymap.set(mode, l, r, { buffer = buffer or true, desc = desc })
+end
+
 function M.lsp_attach(buffer)
   local lsp = vim.lsp.buf
   local t = function(func)
     return string.format("<cmd>Telescope %s<cr>", func)
   end
-  local function map(mode, l, r, desc)
-    vim.keymap.set(mode, l, r, { buffer = buffer, desc = "LSP: " .. desc })
+  local pfx = "LSP: "
+  local function bmap(mode, l, r, desc)
+    map(mode, l, r, desc, buffer)
   end
 
-  map("n", "<leader>ca", lsp.code_action, "Code Action")
-  map("n", "<leader>cd", t("diagnostics"), "Code Action")
-  map("n", "<leader>cr", lsp.rename, "Rename")
-  map("n", "<leader>cs", t("lsp_document_symbols"), "Document Symbols")
-  map("n", "gd", t("lsp_definitions"), "Goto Definition")
-  map("n", "gr", t("lsp_references"), "Goto References")
-  map("n", "gD", lsp.declaration, "Goto Declaration")
-  map("n", "gI", t("lsp_implementations"), "Goto Implementations")
-  map("n", "gy", t("lsp_type_definitions"), "Goto Type Definition")
-  map("n", "K", lsp.hover, "Hover Documentation")
-  map("n", "gK", lsp.signature_help, "Signature Help")
-  map("i", "<C-k>", lsp.signature_help, "Signature Help")
+  bmap("n", "<leader>ca", lsp.code_action, pfx .. "Code Action")
+  bmap("n", "<leader>cd", t("diagnostics"), pfx .. "Code Action")
+  bmap("n", "<leader>cr", lsp.rename, pfx .. "Rename")
+  bmap("n", "<leader>cs", t("lsp_document_symbols"), pfx .. "Document Symbols")
+  bmap("n", "gd", t("lsp_definitions"), pfx .. "Goto Definition")
+  bmap("n", "gr", t("lsp_references"), pfx .. "Goto References")
+  bmap("n", "gD", lsp.declaration, pfx .. "Goto Declaration")
+  bmap("n", "gI", t("lsp_implementations"), pfx .. "Goto Implementations")
+  bmap("n", "gy", t("lsp_type_definitions"), pfx .. "Goto Type Definition")
+  bmap("n", "K", lsp.hover, pfx .. "Hover Documentation")
+  bmap("n", "gK", lsp.signature_help, pfx .. "Signature Help")
+  bmap("i", "<C-k>", lsp.signature_help, pfx .. "Signature Help")
 end
 
 function M.git_attach(gs, buffer)
-  local function map(mode, l, r, desc)
-    vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
+  local function bmap(mode, l, r, desc)
+    map(mode, l, r, desc, buffer)
   end
 
   -- Navigation
-  map("n", "]h", gs.next_hunk, "Next Hunk")
-  map("n", "[h", gs.prev_hunk, "Prev Hunk")
+  bmap("n", "]h", gs.next_hunk, "Next Hunk")
+  bmap("n", "[h", gs.prev_hunk, "Prev Hunk")
   -- Actions
-  map({ "n", "v" }, "<leader>ghs", ":Gitsigns stage_hunk<CR>", "Stage Hunk")
-  map({ "n", "v" }, "<leader>ghr", ":Gitsigns reset_hunk<CR>", "Reset Hunk")
-  map("n", "<leader>ghS", gs.stage_buffer, "Stage Buffer")
-  map("n", "<leader>ghu", gs.undo_stage_hunk, "Undo Stage Hunk")
-  map("n", "<leader>ghR", gs.reset_buffer, "Reset Buffer")
-  map("n", "<leader>ghp", gs.preview_hunk_inline, "Preview Hunk")
-  map("n", "<leader>ghb", function()
+  bmap({ "n", "v" }, "<leader>ghs", ":Gitsigns stage_hunk<CR>", "Stage Hunk")
+  bmap({ "n", "v" }, "<leader>ghr", ":Gitsigns reset_hunk<CR>", "Reset Hunk")
+  bmap("n", "<leader>ghS", gs.stage_buffer, "Stage Buffer")
+  bmap("n", "<leader>ghu", gs.undo_stage_hunk, "Undo Stage Hunk")
+  bmap("n", "<leader>ghR", gs.reset_buffer, "Reset Buffer")
+  bmap("n", "<leader>ghp", gs.preview_hunk_inline, "Preview Hunk")
+  bmap("n", "<leader>ghb", function()
     gs.blame_line({ full = true })
   end, "Blame Line")
-  map("n", "<leader>ghd", gs.diffthis, "Diff This")
-  map("n", "<leader>ghD", function()
+  bmap("n", "<leader>ghd", gs.diffthis, "Diff This")
+  bmap("n", "<leader>ghD", function()
     gs.diffthis("~")
   end, "Diff This ~")
-  map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
+  bmap({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
 end
 
 function M.nvim_surround()
@@ -76,6 +81,19 @@ function M.comment()
     { "gcc", mode = "n", desc = "Comment line" },
     { "gc", mode = "x", desc = "Comment selection" },
     { "gc", mode = "o", desc = "Comment textobject" },
+  }
+end
+
+function M.spectre()
+  return {
+    {
+      "<leader>sr",
+      function()
+        require("spectre").toggle()
+      end,
+      mode = "n",
+      desc = "Search and Replace",
+    },
   }
 end
 
