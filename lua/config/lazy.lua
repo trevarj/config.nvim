@@ -14,7 +14,7 @@ vim.opt.rtp:prepend(lazypath)
 local lazy_opts = {
   root = vim.fn.stdpath("data") .. "/lazy", -- directory where plugins will be installed
   defaults = {
-    lazy = true,                            -- should plugins be lazy-loaded?
+    lazy = true, -- should plugins be lazy-loaded?
     version = false,
     -- default `cond` you can use to globally disable a lot of plugins
     -- when running inside vscode for example
@@ -24,13 +24,14 @@ local lazy_opts = {
   -- leave nil when passing the spec as the first argument to setup()
   spec = {
     { import = "plugins" },
+    { import = "plugins/lsp" },
   }, ---@type LazySpec
   lockfile = vim.fn.stdpath("config") .. "/lazy-lock.json", -- lockfile generated after running update.
   git = {
     -- defaults for the `Lazy log` command
     -- log = { "-10" }, -- show the last 10 commits
     log = { "-8" }, -- show commits from the last 3 days
-    timeout = 120,  -- kill processes that take more than 2 minutes
+    timeout = 120, -- kill processes that take more than 2 minutes
     url_format = "https://github.com/%s.git",
     -- lazy.nvim requires git >=2.19.0. If you really want to use lazy with an older version,
     -- then set the below to false. This should work, but is NOT supported and will
@@ -41,7 +42,7 @@ local lazy_opts = {
     -- directory where you store your local plugin projects
     path = "~/Workspace",
     ---@type string[] plugins that match these patterns will use your local versions instead of being fetched from GitHub
-    patterns = {},    -- For example {"folke"}
+    patterns = {}, -- For example {"folke"}
     fallback = false, -- Fallback to git when local plugin doesn't exist
   },
   install = {
@@ -115,8 +116,8 @@ local lazy_opts = {
     -- automatically check for plugin updates
     enabled = true,
     concurrency = nil, ---@type number? set to 1 to check for updates very slowly
-    notify = false,       -- get a notification when new updates are found
-    frequency = 3600,     -- check for updates every hour
+    notify = false, -- get a notification when new updates are found
+    frequency = 3600, -- check for updates every hour
     check_pinned = false, -- check for pinned packages that can't be updated
   },
   change_detection = {
@@ -130,9 +131,9 @@ local lazy_opts = {
     },
     reset_packpath = true, -- reset the package path to improve startup time
     rtp = {
-      reset = true,        -- reset the runtime path to $VIMRUNTIME and your config directory
+      reset = true, -- reset the runtime path to $VIMRUNTIME and your config directory
       ---@type string[]
-      paths = {},          -- add any custom paths here that you want to includes in the rtp
+      paths = {}, -- add any custom paths here that you want to includes in the rtp
       ---@type string[] list any plugins you want to disable here
       disabled_plugins = {
         "gzip",
