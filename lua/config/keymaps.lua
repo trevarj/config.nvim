@@ -15,7 +15,7 @@ function M.lsp_attach(buffer)
   end
 
   bmap("n", "<leader>ca", lsp.code_action, pfx .. "Code Action")
-  bmap("n", "<leader>cd", t("diagnostics"), pfx .. "Code Action")
+  bmap("n", "<leader>cd", t("diagnostics"), pfx .. "Diagnostics")
   bmap("n", "<leader>cr", lsp.rename, pfx .. "Rename")
   bmap("n", "<leader>cs", t("lsp_document_symbols"), pfx .. "Document Symbols")
   bmap("n", "gd", t("lsp_definitions"), pfx .. "Goto Definition")
