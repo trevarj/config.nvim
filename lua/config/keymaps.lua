@@ -108,7 +108,7 @@ function M.init()
         name = "Buffer",
         a = { "<cmd>e #<cr>", "Previous Buffer" },
         c = { "<cmd>%bd|e#|bd#<cr><cr>", "Close All Others" },
-        d = { "<cmd>bdel<cr>", "Close" },
+        d = { "<cmd>bp|bdel #<cr>", "Close" },
         A = { "<cmd>%bdel<cr>", "Close All" },
         D = { "<cmd>bdel!<cr>", "Force Close" },
       },
