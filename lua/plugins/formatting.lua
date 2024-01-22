@@ -22,6 +22,7 @@ return {
       formatters_by_ft = {
         lua = { "stylua" },
         sh = { "shfmt" },
+        json = { "jq" },
       },
       format_on_save = function(_)
         if not vim.g.disable_autoformat then
