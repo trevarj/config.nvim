@@ -156,7 +156,7 @@ return {
             icon_only = true, -- Display only an icon for filetype
             padding = {
               left = 1,
-              right = 1,
+              right = 2,
             },
           },
         },

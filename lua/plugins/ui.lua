@@ -11,11 +11,11 @@ return {
     opts = function(_, _)
       local colors = require("nord.colors").palette
       return {
-        transparent = false,        -- Enable this to disable setting the background color
-        terminal_colors = true,     -- Configure the colors used when opening a `:terminal` in Neovim
-        diff = { mode = "fg" },     -- enables/disables colorful backgrounds when used in diff mode. values : [bg|fg]
-        borders = true,             -- Enable the border between verticaly split windows visible
-        errors = { mode = "fg" },   -- Display mode for errors and diagnostics
+        transparent = false, -- Enable this to disable setting the background color
+        terminal_colors = true, -- Configure the colors used when opening a `:terminal` in Neovim
+        diff = { mode = "fg" }, -- enables/disables colorful backgrounds when used in diff mode. values : [bg|fg]
+        borders = true, -- Enable the border between verticaly split windows visible
+        errors = { mode = "fg" }, -- Display mode for errors and diagnostics
         -- values : [bg|fg|none]
         search = { theme = "vim" }, -- theme for highlighting search results
         -- values : [vim|vscode]
@@ -61,29 +61,6 @@ return {
     end,
   },
   {
-    "rmehri01/onenord.nvim",
-    lazy = true,
-    priority = 1000,
-    config = function(_, opts)
-      require("onenord").setup(opts)
-      vim.cmd.colorscheme("onenord")
-    end,
-    opts = function(_, _)
-      local colors = require("onenord.colors").load()
-      return {
-        disable = {
-          float_background = true,
-        },
-        custom_highlights = {
-          ["MatchParen"] = { bg = colors.dark_blue },
-        },
-        custom_colors = {
-
-        }
-      }
-    end
-  },
-  {
     "nvim-neo-tree/neo-tree.nvim",
     cmd = "Neotree",
     dependencies = {
@@ -116,6 +93,6 @@ return {
   {
     "NvChad/nvim-colorizer.lua",
     cmd = "ColorizerToggle",
-    opts = {}
-  }
+    opts = {},
+  },
 }
