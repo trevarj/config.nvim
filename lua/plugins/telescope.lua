@@ -4,6 +4,7 @@ return {
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     { "trevarj/telescope-tmux.nvim", dev = false, branch = "develop" },
     { "norcalli/nvim-terminal.lua" }, -- mostly for tmux pane contents
+    { "nvim-telescope/telescope-ui-select.nvim" },
   },
   cmd = "Telescope",
   -- apply the config and additionally load fzf-native
@@ -32,9 +33,13 @@ return {
       tmux = {
         grep_cmd = "rg -oe",
       },
+      ["ui-select"] = {
+        require("telescope.themes").get_ivy({ results_title = false, layout_config = { height = 8 } }),
+      },
     }
     telescope.setup(opts)
     telescope.load_extension("fzf")
     telescope.load_extension("tmux")
+    telescope.load_extension("ui-select")
   end,
 }
