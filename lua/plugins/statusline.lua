@@ -79,7 +79,10 @@ return {
       end
 
       opts.sections = {
-        lualine_a = { { "mode" }, { recording_macro, padding = { left = 0, right = 1 } } },
+        lualine_a = {
+          { "mode" },
+          { recording_macro, padding = { left = 0, right = 1 } },
+        },
         lualine_b = {
           { "branch" },
           {
@@ -102,6 +105,15 @@ return {
           },
         },
         lualine_c = {
+          {
+            "filetype",
+            colored = true, -- Displays filetype icon in color if set to true
+            icon_only = true, -- Display only an icon for filetype
+            padding = {
+              left = 1,
+              right = 1,
+            },
+          },
           {
             "filename",
             file_status = true, -- Displays file status (readonly status, modified status)
@@ -138,28 +150,18 @@ return {
               hint = icons.hint,
             },
           },
-          {
-            lazy_status.updates,
-            cond = lazy_status.has_updates,
-          },
         },
         lualine_y = {
           { "searchcount" },
           { "selectioncount" },
           { "location", padding = { left = 1, right = 1 } },
-          { "progress", separator = "", padding = { left = 0, right = 2 } },
-        },
-        lualine_z = {
+          { "progress", separator = "" },
           {
-            "filetype",
-            colored = false, -- Displays filetype icon in color if set to true
-            icon_only = true, -- Display only an icon for filetype
-            padding = {
-              left = 1,
-              right = 2,
-            },
+            lazy_status.updates,
+            cond = lazy_status.has_updates,
           },
         },
+        lualine_z = {},
       }
       opts.tabline = {
         lualine_a = {

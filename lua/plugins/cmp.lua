@@ -13,7 +13,11 @@ return {
       local cmp = require("cmp")
       local defaults = require("cmp.config.default")()
       cmp.setup.cmdline(":", {
-        mapping = cmp.mapping.preset.cmdline(),
+        mapping = cmp.mapping.preset.cmdline({
+          ["<C-Space>"] = {
+            c = cmp.mapping.confirm({ select = false }),
+          },
+        }),
         sources = cmp.config.sources({
           { name = "path" },
         }, {
