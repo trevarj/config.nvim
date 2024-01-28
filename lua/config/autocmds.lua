@@ -35,7 +35,7 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd("FileType", {
   group = augroup("last_loc"),
   callback = function(event)
-    local exclude = { "gitcommit" }
+    local exclude = { "gitcommit", "gitrebase" }
     local buf = event.buf
     if vim.tbl_contains(exclude, vim.bo[buf].filetype) or vim.b[buf].user_last_loc then
       return
