@@ -128,7 +128,13 @@ function M.init()
         end,
         "Config Files",
       },
-      e = { "<cmd>Neotree toggle reveal<cr>", "File Explorer" },
+      -- e = { "<cmd>Neotree toggle reveal<cr>", "File Explorer" },
+      e = {
+        function()
+          require("oil").toggle_float()
+        end,
+        "File Explorer",
+      },
       f = {
         name = "File",
         b = { "<cmd>Telescope buffers<cr>", "Find Buffers" },
@@ -174,6 +180,7 @@ function M.init()
       },
       u = {
         name = "UI",
+        c = { "<cmd>ColorizerToggle<cr>", "Toggle RGB Colors" },
         t = { "<cmd>TSContextToggle<cr>", "Toggle Treesitter Context" },
         f = { "<cmd>ToggleFormat<cr>", "Toggle Format On Save" },
       },

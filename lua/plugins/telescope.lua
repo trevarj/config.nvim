@@ -1,6 +1,7 @@
 return {
   "nvim-telescope/telescope.nvim",
   dependencies = {
+    "nvim-lua/plenary.nvim",
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     { "trevarj/telescope-tmux.nvim", dev = false, branch = "develop" },
     { "norcalli/nvim-terminal.lua" }, -- mostly for tmux pane contents

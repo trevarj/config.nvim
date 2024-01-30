@@ -34,4 +34,20 @@ return {
     keys = keys.spectre(),
     opts = {},
   },
+  {
+    "stevearc/oil.nvim",
+    cmd = "Oil",
+    opts = {
+      keymaps = {
+        ["<BS>"] = "actions.parent",
+      },
+      view_options = {
+        show_hidden = true,
+      },
+      float = {
+        max_width = 150,
+      },
+    },
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+  },
 }
