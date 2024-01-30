@@ -241,6 +241,8 @@ function M.init()
     ["<"] = { mode = { "v" }, "<gv", "De-dent" },
     ["<esc>"] = { mode = { "n", "i" }, "<cmd>noh<cr><esc>", "Clear Search Highlighting" },
     ["<esc><esc>"] = { mode = { "t" }, "<C-\\><C-n>", "Escape terminal mode" },
+    -- Insert mode help
+    ["<C-e>"] = { mode = "i", "<esc>A", "Insert end of line" },
   })
 
   -- Better Up/Down, keeps selection when moving lines in visual mode
