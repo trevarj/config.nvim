@@ -44,9 +44,6 @@ return {
       view_options = {
         show_hidden = true,
       },
-      float = {
-        max_width = 150,
-      },
     },
     dependencies = { "nvim-tree/nvim-web-devicons" },
   },
