@@ -177,6 +177,7 @@ function M.init()
         g = { "<cmd>Telescope live_grep<cr>", "Grep (cwd)" },
         h = { "<cmd>Telescope help_tags<cr>", "Help Tags" },
         k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
+        m = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
       },
       u = {
         name = "UI",
