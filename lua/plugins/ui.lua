@@ -73,4 +73,24 @@ return {
     cmd = "ColorizerToggle",
     opts = {},
   },
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
+    event = "BufRead",
+    opts = {
+      indent = {
+        char = "▏",
+        tab_char = "▏",
+      },
+      scope = { enabled = false },
+      exclude = {
+        filetypes = {
+          "help",
+          "lazy",
+          "mason",
+          "man",
+        },
+      },
+    },
+  },
 }
