@@ -1,3 +1,12 @@
+-- adding crates to cmp sources
+vim.api.nvim_create_autocmd("BufRead", {
+  group = vim.api.nvim_create_augroup("CmpSourceCargo", { clear = true }),
+  pattern = "Cargo.toml",
+  callback = function()
+    require("cmp").setup.buffer({ sources = { { name = "crates" } } })
+  end,
+})
+
 return {
   {
     "mrcjkb/rustaceanvim",
@@ -44,22 +53,15 @@ return {
     end,
   },
   {
-    "hrsh7th/nvim-cmp",
+    "Saecki/crates.nvim",
     dependencies = {
-      {
-        "Saecki/crates.nvim",
-        event = { "BufRead Cargo.toml" },
-        opts = {
-          src = {
-            cmp = { enabled = true },
-          },
-        },
+      "hrsh7th/nvim-cmp",
+    },
+    event = "BufRead Cargo.toml",
+    opts = {
+      src = {
+        cmp = { enabled = true },
       },
     },
-    ---@param opts cmp.ConfigSchema
-    opts = function(_, opts)
-      opts.sources = opts.sources or {}
-      table.insert(opts.sources, { name = "crates" })
-    end,
   },
 }

@@ -131,7 +131,7 @@ return {
             function()
               return " "
             end,
-            padding = { left = 0, right = 1 },
+            padding = { left = 0, right = 0 },
           },
         },
         lualine_b = {
