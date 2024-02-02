@@ -84,7 +84,7 @@ return {
           { recording_macro, padding = { left = 0, right = 1 } },
         },
         lualine_b = {
-          { "branch" },
+          { "branch", icon = "" },
           {
             "diff",
             symbols = {
