@@ -37,8 +37,8 @@ function M.git_attach(gs, buffer)
   bmap("n", "]h", gs.next_hunk, "Next Hunk")
   bmap("n", "[h", gs.prev_hunk, "Prev Hunk")
   -- Actions
-  bmap({ "n", "v" }, "<leader>ghs", ":Gitsigns stage_hunk<CR>", "Stage Hunk")
-  bmap({ "n", "v" }, "<leader>ghr", ":Gitsigns reset_hunk<CR>", "Reset Hunk")
+  bmap({ "n", "v" }, "<leader>ghs", "<cmd>Gitsigns stage_hunk<CR>", "Stage Hunk")
+  bmap({ "n", "v" }, "<leader>ghr", "<cmd>Gitsigns reset_hunk<CR>", "Reset Hunk")
   bmap("n", "<leader>ghS", gs.stage_buffer, "Stage Buffer")
   bmap("n", "<leader>ghu", gs.undo_stage_hunk, "Undo Stage Hunk")
   bmap("n", "<leader>ghR", gs.reset_buffer, "Reset Buffer")
@@ -50,7 +50,7 @@ function M.git_attach(gs, buffer)
   bmap("n", "<leader>ghD", function()
     gs.diffthis("~")
   end, "Diff This ~")
-  bmap({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
+  bmap({ "o", "x" }, "ih", "<cmd><C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
 end
 
 function M.nvim_surround()
@@ -269,8 +269,8 @@ function M.init()
     ["<A-k>"] = { "<esc><cmd>m .-2<cr>==gi", "Move Line up" },
   }, { mode = "i" })
   wk.register({
-    ["<A-j>"] = { ":m '>+1<cr>gv=gv", "Move Lines Down" },
-    ["<A-k>"] = { ":m '<-2<cr>gv=gv", "Move Lines Up" },
+    ["<A-j>"] = { "<cmd>m '>+1<cr>gv=gv", "Move Lines Down" },
+    ["<A-k>"] = { "<cmd>m '<-2<cr>gv=gv", "Move Lines Up" },
   }, { mode = "v" })
 
   -- Jump to buffers using Alt-[1-0]

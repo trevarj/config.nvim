@@ -24,13 +24,60 @@ local function theme()
   end
 end
 
+local function mode()
+  local colors = require("nord.colors").palette
+  -- :h mode()
+  local map = {
+    ["n"] = "normal",
+    ["no"] = "o-pending",
+    ["nov"] = "o-pending",
+    ["noV"] = "o-pending",
+    ["no\22"] = "o-pending",
+    ["niI"] = "normal",
+    ["niR"] = "normal",
+    ["niV"] = "normal",
+    ["nt"] = "normal",
+    ["ntT"] = "normal",
+    ["v"] = "visual",
+    ["vs"] = "visual",
+    ["V"] = "v-line",
+    ["Vs"] = "v-line",
+    ["\22"] = "v-block",
+    ["\22s"] = "v-block",
+    ["s"] = "select",
+    ["S"] = "s-line",
+    ["\19"] = "s-block",
+    ["i"] = "insert",
+    ["ic"] = "insert",
+    ["ix"] = "insert",
+    ["R"] = "replace",
+    ["Rc"] = "replace",
+    ["Rx"] = "replace",
+    ["Rv"] = "v-replace",
+    ["Rvc"] = "v-replace",
+    ["Rvx"] = "v-replace",
+    ["c"] = "command",
+    ["cv"] = "ex",
+    ["ce"] = "ex",
+    ["r"] = "replace",
+    ["rm"] = "more",
+    ["r?"] = "confirm",
+    ["!"] = "shell",
+    ["t"] = "terminal",
+  }
+  local mode_code = vim.api.nvim_get_mode().mode
+  if map[mode_code] == nil then
+    return mode_code
+  end
+  return map[mode_code]
+end
+
 return {
   {
     "nvim-lualine/lualine.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     event = "VeryLazy",
     opts = function()
-      -- NOTE statusline goes away if not using noice or something to keep it refreshing, i think
       local icons = require("config.icons")
       local lazy_status = require("lazy.status")
       local opts = {}
@@ -80,10 +127,23 @@ return {
 
       opts.sections = {
         lualine_a = {
-          { "mode" },
-          { recording_macro, padding = { left = 0, right = 1 } },
+          {
+            function()
+              return " "
+            end,
+            padding = { left = 0, right = 1 },
+          },
         },
         lualine_b = {
+          {
+            function()
+              return mode()
+            end,
+            color = function()
+              return { fg = require("nord.colors").palette.polar_night.light }
+            end,
+          },
+          { recording_macro, padding = { left = 0, right = 1 } },
           { "branch", icon = "" },
           {
             "diff",
@@ -190,7 +250,7 @@ return {
           },
         },
       }
-      opts.extensions = {}
+      opts.extensions = { "lazy", "man", "mason", "oil" }
       return opts
     end,
   },
