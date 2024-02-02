@@ -37,6 +37,7 @@ return {
   {
     "stevearc/oil.nvim",
     cmd = "Oil",
+    event = { "VimEnter */*,.*", "BufNew */*,.*" },
     opts = {
       keymaps = {
         ["<BS>"] = "actions.parent",
