@@ -7,7 +7,7 @@ local function nord_theme()
   nord.normal.b.fg = colors.snow_storm.origin
   nord.normal.b.bg = colors.polar_night.bright
   nord.normal.c.fg = colors.snow_storm.origin
-  nord.normal.c.bg = colors.polar_night.origin
+  nord.normal.c.bg = colors.polar_night.bright
   nord.insert.a.bg = colors.aurora.orange
   nord.inactive.a.fg = colors.frost.artic_water
   nord.inactive.a.bg = colors.polar_night.bright
@@ -138,7 +138,8 @@ return {
           {
             mode,
             color = function()
-              return { fg = require("nord.colors").palette.polar_night.light }
+              local c = require("nord.colors").palette
+              return { fg = c.polar_night.light, bg = c.polar_night.bright }
             end,
           },
           {
@@ -146,7 +147,7 @@ return {
             color = function()
               return { fg = require("nord.colors").palette.aurora.red }
             end,
-            padding = { left = 0, right = 1 },
+            padding = { left = 0, right = 0 },
           },
           { "branch", icon = "" },
           {

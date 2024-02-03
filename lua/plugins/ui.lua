@@ -55,6 +55,7 @@ return {
           hl.TreesitterContext = { bg = c.polar_night.bright }
           hl.WarningMsg = { fg = c.aurora.yellow }
           hl.ErrorMsg = { fg = c.aurora.red }
+          hl.WhichKeyGroup = { fg = c.aurora.orange, bold = true }
           -- hl.NonText = { fg = c.polar_night.light }
         end,
       }
