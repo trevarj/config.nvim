@@ -136,14 +136,18 @@ return {
         },
         lualine_b = {
           {
-            function()
-              return mode()
-            end,
+            mode,
             color = function()
               return { fg = require("nord.colors").palette.polar_night.light }
             end,
           },
-          { recording_macro, padding = { left = 0, right = 1 } },
+          {
+            recording_macro,
+            color = function()
+              return { fg = require("nord.colors").palette.aurora.red }
+            end,
+            padding = { left = 0, right = 1 },
+          },
           { "branch", icon = "" },
           {
             "diff",
