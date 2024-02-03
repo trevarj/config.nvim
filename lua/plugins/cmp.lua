@@ -12,6 +12,7 @@ return {
       vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
       local cmp = require("cmp")
       local defaults = require("cmp.config.default")()
+
       cmp.setup.cmdline(":", {
         mapping = cmp.mapping.preset.cmdline({
           ["<C-Space>"] = {
@@ -29,12 +30,13 @@ return {
           },
         }),
       })
+
       return {
         completion = {
           completeopt = "menu,menuone,noinsert",
         },
         window = {
-          completion = cmp.config.window.bordered(),
+          completion = cmp.config.window.bordered({ scrollbar = false }),
           documentation = cmp.config.window.bordered(),
         },
         snippet = {
