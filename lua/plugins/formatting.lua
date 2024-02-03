@@ -26,14 +26,7 @@ return {
         json = { "jq" },
         ["_"] = { "trim_whitespace" },
       },
-      formatters = {
-        awk = {
-          inherit = false,
-          command = "awk",
-          args = { "-f", "-", "-o-" },
-          stdin = true,
-        },
-      },
+      formatters = {},
       format_on_save = function(_)
         if not vim.g.disable_autoformat then
           return {
