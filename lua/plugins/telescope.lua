@@ -48,7 +48,7 @@ return {
     opts = {
       extensions = {
         tmux = {
-          grep_cmd = "rg -oe",
+          grep_cmd = "rg -oP",
         },
       },
     },
