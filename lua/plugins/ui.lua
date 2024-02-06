@@ -67,7 +67,11 @@ return {
     init = function()
       vim.o.timeout = true
     end,
-    opts = {},
+    opts = {
+      icons = {
+        group = "",
+      },
+    },
   },
   {
     "NvChad/nvim-colorizer.lua",
