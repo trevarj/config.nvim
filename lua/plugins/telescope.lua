@@ -44,6 +44,7 @@ return {
     "trevarj/telescope-tmux.nvim",
     dev = false,
     branch = "develop",
+    cmd = { "Telescope tmux" },
     dependencies = { "nvim-telescope/telescope.nvim" },
     opts = {
       extensions = {
