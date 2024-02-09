@@ -178,6 +178,13 @@ function M.init()
         h = { "<cmd>Telescope help_tags<cr>", "Help Tags" },
         k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
         m = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
+        t = {
+          name = "Telescope",
+          c = { "<cmd>Telescope tmux pane_contents<cr>", "Pane Contents" },
+          p = { "<cmd>Telescope tmux pane_file_paths<cr>", "Pane File Paths" },
+          s = { "<cmd>Telescope tmux sessions<cr>", "Sessions" },
+          w = { "<cmd>Telescope tmux windows<cr>", "Windows" },
+        },
       },
       u = {
         name = "UI",
