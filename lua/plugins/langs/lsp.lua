@@ -21,18 +21,15 @@ return {
           virtual_text = {
             spacing = 4,
             source = "if_many",
-            prefix = "●",
-            -- this will set set the prefix to a function that returns the diagnostics icon based on the severity
-            -- this only works on a recent 0.10.0 build. Will be set to "●" when not supported
-            -- prefix = "icons",
+            prefix = icons.from_severity,
           },
           severity_sort = true,
           signs = {
             text = {
               [vim.diagnostic.severity.ERROR] = icons.error,
               [vim.diagnostic.severity.WARN] = icons.warning,
-              [vim.diagnostic.severity.HINT] = icons.hint,
               [vim.diagnostic.severity.INFO] = icons.info,
+              [vim.diagnostic.severity.HINT] = icons.hint,
             },
           },
           float = { border = "rounded" },
@@ -69,18 +66,8 @@ return {
             },
           },
         },
-        -- you can do any additional lsp server setup here
-        -- return true if you don't want this server to be setup with lspconfig
         ---@type table<string, fun(server:string, opts:_.lspconfig.options):boolean?>
-        setup = {
-          -- example to setup with typescript.nvim
-          -- tsserver = function(_, opts)
-          --   require("typescript").setup({ server = opts })
-          --   return true
-          -- end,
-          -- Specify * to use this function as a fallback for any server
-          -- ["*"] = function(server, opts) end,
-        },
+        setup = {},
       }
     end,
     ---@param opts PluginLspOpts
