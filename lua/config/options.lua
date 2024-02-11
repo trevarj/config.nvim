@@ -5,7 +5,7 @@ local opt = vim.opt
 
 opt.autowrite = true -- Enable auto write
 opt.clipboard = "unnamedplus" -- Sync with system clipboard
-opt.cmdheight = 0
+opt.cmdheight = 1
 opt.showcmd = false
 opt.completeopt = "menu,menuone,noinsert"
 opt.conceallevel = 0
@@ -38,7 +38,7 @@ opt.scrolloff = 8 -- Lines of context
 opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }
 opt.shiftround = true -- Round indent
 opt.shiftwidth = 2 -- Size of an indent
-opt.shortmess:append({ W = true, I = true, c = true, C = true })
+opt.shortmess:append({ W = true, I = true, c = true, C = true, q = true })
 opt.showmode = false
 opt.sidescrolloff = 8 -- Columns of context
 opt.signcolumn = "yes" -- Always show the signcolumn, otherwise it would shift the text each time
