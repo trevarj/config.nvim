@@ -6,8 +6,8 @@ end
 
 function M.lsp_attach(buffer)
   local lsp = vim.lsp.buf
-  local t = function(func)
-    return string.format("<cmd>Telescope %s<cr>", func)
+  local fzf = function(func)
+    return string.format("<cmd>FzfLua %s<cr>", func)
   end
   local pfx = "LSP: "
   local function bmap(mode, l, r, desc)
@@ -15,14 +15,14 @@ function M.lsp_attach(buffer)
   end
 
   bmap("n", "<leader>ca", lsp.code_action, pfx .. "Code Action")
-  bmap("n", "<leader>cd", t("diagnostics"), pfx .. "Diagnostics")
+  bmap("n", "<leader>cd", fzf("lsp_workspace_diagnostics"), pfx .. "Diagnostics")
   bmap("n", "<leader>cr", lsp.rename, pfx .. "Rename")
-  bmap("n", "<leader>cs", t("lsp_document_symbols"), pfx .. "Document Symbols")
-  bmap("n", "gd", t("lsp_definitions"), pfx .. "Goto Definition")
-  bmap("n", "gr", t("lsp_references"), pfx .. "Goto References")
+  bmap("n", "<leader>cs", fzf("lsp_document_symbols"), pfx .. "Document Symbols")
+  bmap("n", "gd", fzf("lsp_definitions"), pfx .. "Goto Definition")
+  bmap("n", "gr", fzf("lsp_references"), pfx .. "Goto References")
   bmap("n", "gD", lsp.declaration, pfx .. "Goto Declaration")
-  bmap("n", "gI", t("lsp_implementations"), pfx .. "Goto Implementations")
-  bmap("n", "gy", t("lsp_type_definitions"), pfx .. "Goto Type Definition")
+  bmap("n", "gI", fzf("lsp_implementations"), pfx .. "Goto Implementations")
+  bmap("n", "gy", fzf("lsp_type_defs"), pfx .. "Goto Type Definition")
   bmap("n", "K", lsp.hover, pfx .. "Hover Documentation")
   bmap("n", "gK", lsp.signature_help, pfx .. "Signature Help")
   bmap("i", "<C-k>", lsp.signature_help, pfx .. "Signature Help")
@@ -99,9 +99,6 @@ end
 
 function M.init()
   local wk = require("which-key")
-  local t = function()
-    return require("telescope.builtin")
-  end
   wk.register({
     ["<leader>"] = {
       b = {
@@ -124,7 +121,7 @@ function M.init()
       },
       C = {
         function()
-          t().find_files({ cwd = vim.fn.stdpath("config") })
+          require("fzf-lua").files({ cwd = vim.fn.stdpath("config") })
         end,
         "Config Files",
       },
@@ -137,58 +134,42 @@ function M.init()
       },
       f = {
         name = "File",
-        b = { "<cmd>Telescope buffers<cr>", "Find Buffers" },
-        h = {
-          function()
-            t().find_files({
-              no_ignore = true,
-              hidden = true,
-            })
-          end,
-          "Find Files (no ignore)",
-        },
-        H = {
-          function()
-            t().find_files({
-              cwd = "~",
-              hidden = true,
-            })
-          end,
-          "Find Files (home)",
-        },
-        j = { "<cmd>Telescope jumplist<cr>", "Jumplist" },
-        l = { "<cmd>Telescope resume<cr>", "Last Search" },
+        b = { "<cmd>FzfLua buffers<cr>", "Find Buffers" },
+        H = { "<cmd>FzfLua files cwd=~", "Find Files (home)" },
+        j = { "<cmd>FzfLua jumps<cr>", "Jumplist" },
+        l = { "<cmd>FzfLua resume<cr>", "Last Search" },
         n = { "<cmd>enew<cr>", "New File" },
-        w = { "<cmd>Telescope grep_string<cr>", "Find Word" },
-        f = { "<cmd>Telescope find_files<cr>", "Find Files" },
-        r = { "<cmd>Telescope oldfiles<cr>", "Open Recent Files" },
+        f = { "<cmd>FzfLua find_files<cr>", "Find Files" },
+        r = { "<cmd>FzfLua oldfiles<cr>", "Open Recent Files" },
       },
       g = {
         name = "Git",
-        b = { "<cmd>Telescope git_branches<cr>", "Branches" },
-        c = { "<cmd>Telescope git_commits<cr>", "Commits" },
+        b = { "<cmd>FzfLua git_branches<cr>", "Branches" },
+        c = { "<cmd>FzfLua git_commits<cr>", "Commits" },
         h = { "Hunks" },
-        s = { "<cmd>Telescope git_status<cr>", "Status" },
+        s = { "<cmd>FzfLua git_status<cr>", "Status" },
+        t = { "<cmd>FzfLua tags<cr>", "Tags" },
       },
       l = { "<cmd>Lazy<cr>", "Lazy" },
       s = {
         name = "Search",
-        c = { "<cmd>Telescope commands<cr>", "Commands" },
-        g = { "<cmd>Telescope live_grep<cr>", "Grep (cwd)" },
-        h = { "<cmd>Telescope help_tags<cr>", "Help Tags" },
-        k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
-        m = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
-        t = {
-          name = "Telescope",
-          c = { "<cmd>Telescope tmux pane_contents<cr>", "Pane Contents" },
-          p = { "<cmd>Telescope tmux pane_file_paths<cr>", "Pane File Paths" },
-          s = { "<cmd>Telescope tmux sessions<cr>", "Sessions" },
-          w = { "<cmd>Telescope tmux windows<cr>", "Windows" },
-        },
+        c = { "<cmd>FzfLua commands<cr>", "Commands" },
+        g = { "<cmd>FzfLua live_grep<cr>", "Grep" },
+        h = { "<cmd>FzfLua help_tags<cr>", "Help Tags" },
+        k = { "<cmd>FzfLua keymaps<cr>", "Keymaps" },
+        m = { "<cmd>FzfLua man_pages<cr>", "Man Pages" },
+        -- t = {
+        --   name = "Tmux",
+        --   c = { "<cmd>Telescope tmux pane_contents<cr>", "Pane Contents" },
+        --   p = { "<cmd>Telescope tmux pane_file_paths<cr>", "Pane File Paths" },
+        --   s = { "<cmd>Telescope tmux sessions<cr>", "Sessions" },
+        --   w = { "<cmd>Telescope tmux windows<cr>", "Windows" },
+        -- },
       },
       u = {
         name = "UI",
         c = { "<cmd>ColorizerToggle<cr>", "Toggle RGB Colors" },
+        h = { "<cmd>FzfLua highlights<cr>", "Highlights" },
         t = { "<cmd>TSContextToggle<cr>", "Toggle Treesitter Context" },
         f = { "<cmd>ToggleFormat<cr>", "Toggle Format On Save" },
       },
@@ -214,22 +195,11 @@ function M.init()
         },
         q = { "<cmd>qa<cr>", "Quit all" },
       },
-      [" "] = {
-        function()
-          -- try git_files and fallback to find_files if not git dir
-          xpcall(function()
-            t().git_files({
-              no_ignore = true,
-              hidden = true,
-              show_untracked = true,
-            })
-          end, function(_)
-            t().find_files()
-          end)
-        end,
-        "Find Files",
+      [" "] = { "<cmd>FzfLua files<cr>", "Find Files" },
+      ["/"] = {
+        { "<cmd>FzfLua live_grep<cr>", "Grep" },
+        { "<cmd>FzfLua grep_visual<cr>", "Grep", mode = "v" },
       },
-      ["/"] = { "<cmd>Telescope live_grep<cr>", "Grep (cwd)" },
       ["|"] = { "<cmd>vsplit<cr>", "Vertical Split" },
       ["-"] = { "<cmd>split<cr>", "Horizontal Split" },
       ["`"] = { "<cmd>e #<cr>", "Previous Buffer" },

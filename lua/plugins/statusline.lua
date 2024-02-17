@@ -255,7 +255,7 @@ return {
           },
         },
       }
-      opts.extensions = { "lazy", "man", "mason", "oil" }
+      opts.extensions = { "fzf", "lazy", "man", "mason", "oil" }
       return opts
     end,
   },

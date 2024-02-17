@@ -7,6 +7,7 @@ return {
       { "norcalli/nvim-terminal.lua" }, -- mostly for tmux pane contents
       { "nvim-telescope/telescope-ui-select.nvim" },
     },
+    enabled = false,
     cmd = "Telescope",
     -- apply the config and additionally load fzf-native
     config = function(_, opts)
@@ -43,6 +44,7 @@ return {
   {
     "trevarj/telescope-tmux.nvim",
     dev = false,
+    enabled = false,
     branch = "develop",
     cmd = { "Telescope tmux" },
     dependencies = { "nvim-telescope/telescope.nvim" },
