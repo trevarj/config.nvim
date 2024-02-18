@@ -37,7 +37,7 @@ return {
         -- see https://github.com/EdenEast/nightfox.nvim#colorblind
         -- simulation mode has not been implemented yet.
         colorblind = {
-          enable = true,
+          enable = false,
           preserve_background = true,
           severity = {
             protan = 0.2,

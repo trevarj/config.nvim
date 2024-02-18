@@ -1,11 +1,11 @@
 return {
   {
     "mrjones2014/smart-splits.nvim",
-    cmd = { "SmartCursorMoveUp", "SmartCursorMoveDown", "SmartCursorMoveLeft", "SmartCursorMoveRight" }
+    cmd = { "SmartCursorMoveUp", "SmartCursorMoveDown", "SmartCursorMoveLeft", "SmartCursorMoveRight" },
   },
   {
     "max397574/better-escape.nvim",
-    event = "VeryLazy",
+    event = "InsertCharPre",
     opts = {
       mapping = { "ww" },
       timeout = vim.o.timeoutlen,

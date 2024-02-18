@@ -90,12 +90,7 @@ return {
           statusline = {}, -- only ignores the ft for statusline.
         },
 
-        ignore_focus = { "neo-tree", "TelescopePrompt", "lazy", "mason" }, -- If current filetype is in this list it'll
-        -- always be drawn as inactive statusline
-        -- and the last window will be drawn as active statusline.
-        -- for example if you don't want statusline of
-        -- your file tree / sidebar window to have active
-        -- statusline you can add their filetypes here.
+        ignore_focus = { "TelescopePrompt" }, -- filetypes to hide the line
 
         always_divide_middle = true, -- When set to true, left sections i.e. 'a','b' and 'c'
         -- can't take over the entire statusline even

@@ -157,6 +157,10 @@ return {
         "shfmt",
         -- "flake8",
       },
+      ui = {
+        border = "rounded",
+        height = 0.8,
+      },
     },
     ---@param opts MasonSettings | {ensure_installed: string[]}
     config = function(_, opts)
