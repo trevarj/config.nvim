@@ -166,6 +166,7 @@ function M.init()
         --   w = { "<cmd>Telescope tmux windows<cr>", "Windows" },
         -- },
       },
+      t = { "<cmd>vsplit | terminal<cr>", "Terminal" },
       u = {
         name = "UI",
         c = { "<cmd>ColorizerToggle<cr>", "Toggle RGB Colors" },
@@ -224,8 +225,10 @@ function M.init()
     -- Indent lines
     [">"] = { mode = { "v" }, ">gv", "Indent" },
     ["<"] = { mode = { "v" }, "<gv", "De-dent" },
-    ["<esc>"] = { mode = { "n", "i" }, "<cmd>noh<cr><esc>", "Clear Search Highlighting" },
-    ["<esc><esc>"] = { mode = { "t" }, "<C-\\><C-n>", "Escape terminal mode" },
+    ["<esc>"] = {
+      { mode = { "n", "i" }, "<cmd>noh<cr><esc>", "Clear Search Highlighting" },
+      { mode = { "t" }, "<C-\\><C-n>", "Escape terminal mode" },
+    },
     -- Insert mode help
     ["<C-e>"] = { mode = "i", "<esc>A", "Insert end of line" },
   })

@@ -27,14 +27,14 @@
   "nvim-lspconfig": { "branch": "master", "commit": "d1bab4cf4b69e49d6058028fd933d8ef5e74e680" },
   "nvim-spectre": { "branch": "master", "commit": "6a0785ef64c839d935a2f92e20988e962fb6537e" },
   "nvim-surround": { "branch": "main", "commit": "8f2af76134f37058dc4c27a24bc5f86c9cae76dc" },
-  "nvim-treesitter": { "branch": "master", "commit": "17d68ac13c902f55253b7facb47df4c0ae532575" },
+  "nvim-treesitter": { "branch": "master", "commit": "f75a5b4e144228e4b2ab3006ed167b6fe37d0b33" },
   "nvim-treesitter-context": { "branch": "master", "commit": "23b699ac40091d8c729f024b3f1400bc7e26e0c5" },
   "nvim-treesitter-textobjects": { "branch": "master", "commit": "7f00d94543f1fd37cab2afa2e9a6cd54e1c6b9ef" },
-  "nvim-web-devicons": { "branch": "master", "commit": "7f30f2da3c3641841ceb0e2c150281f624445e8f" },
+  "nvim-web-devicons": { "branch": "master", "commit": "14ac5887110b06b89a96881d534230dac3ed134d" },
   "oil.nvim": { "branch": "master", "commit": "bf753c3e3f8736939ad5597f92329dfe7b1df4f5" },
   "persistence.nvim": { "branch": "main", "commit": "4982499c1636eac254b72923ab826ee7827b3084" },
   "rustaceanvim": { "branch": "master", "commit": "ec3288d52ed581ee63a10e41a226297801fa6ee8" },
-  "smart-splits.nvim": { "branch": "master", "commit": "33c85072ac7901b0f4a68dec7f7d6175f4182377" },
+  "smart-splits.nvim": { "branch": "master", "commit": "e1e1e6ca3754bd8ef971fb69673cc17965eb9e37" },
   "vim-startuptime": { "branch": "master", "commit": "308b0088a864c4711a96e45b6734cf9294074f65" },
   "which-key.nvim": { "branch": "main", "commit": "4433e5ec9a507e5097571ed55c02ea9658fb268a" }
 }
