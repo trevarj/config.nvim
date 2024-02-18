@@ -158,6 +158,7 @@ function M.init()
         h = { "<cmd>FzfLua help_tags<cr>", "Help Tags" },
         k = { "<cmd>FzfLua keymaps<cr>", "Keymaps" },
         m = { "<cmd>FzfLua man_pages<cr>", "Man Pages" },
+        w = { "<cmd>FzfLua grep_cword<cr>", "Grep Word Under Cursor" },
         -- t = {
         --   name = "Tmux",
         --   c = { "<cmd>Telescope tmux pane_contents<cr>", "Pane Contents" },
