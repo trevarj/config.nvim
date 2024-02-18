@@ -4,9 +4,9 @@ local function nord_theme()
 
   nord.normal.a.fg = colors.polar_night.origin
   nord.normal.a.bg = colors.frost.artic_water
-  nord.normal.b.fg = colors.snow_storm.origin
+  nord.normal.b.fg = colors.frost.ice
   nord.normal.b.bg = colors.polar_night.bright
-  nord.normal.c.fg = colors.snow_storm.origin
+  nord.normal.c.fg = colors.frost.ice
   nord.normal.c.bg = colors.polar_night.bright
   nord.insert.a.bg = colors.aurora.orange
   nord.inactive.a.fg = colors.frost.artic_water
@@ -25,7 +25,6 @@ local function theme()
 end
 
 local function mode()
-  local colors = require("nord.colors").palette
   -- :h mode()
   local map = {
     ["n"] = "normal",
@@ -80,6 +79,7 @@ return {
     opts = function()
       local icons = require("config.icons")
       local lazy_status = require("lazy.status")
+      local c = require("nord.colors").palette
       local opts = {}
 
       opts.options = {
@@ -114,7 +114,7 @@ return {
       local recording_macro = function()
         local key = vim.fn.reg_recording()
         if key ~= "" then
-          return string.format("recording @%s", key)
+          return string.format(" recording @%s ", key)
         else
           return ""
         end
@@ -133,18 +133,17 @@ return {
           {
             mode,
             color = function()
-              local c = require("nord.colors").palette
               return { fg = c.polar_night.light, bg = c.polar_night.bright }
             end,
           },
           {
             recording_macro,
             color = function()
-              return { fg = require("nord.colors").palette.aurora.red }
+              return { fg = c.polar_night.origin, bg = c.aurora.red }
             end,
             padding = { left = 0, right = 0 },
           },
-          { "branch", icon = "" },
+          { "branch", icon = "", color = { fg = c.aurora.green } },
           {
             "diff",
             symbols = {
