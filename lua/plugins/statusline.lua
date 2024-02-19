@@ -10,7 +10,7 @@ local function nord_theme()
   nord.normal.c.bg = colors.polar_night.bright
   nord.insert.a.bg = colors.aurora.orange
   nord.inactive.a.fg = colors.frost.artic_water
-  nord.inactive.a.bg = colors.polar_night.bright
+  nord.inactive.a.bg = colors.polar_night.origin
   return nord
 end
 
@@ -92,7 +92,7 @@ return {
 
         ignore_focus = { "TelescopePrompt" }, -- filetypes to hide the line
 
-        always_divide_middle = true, -- When set to true, left sections i.e. 'a','b' and 'c'
+        always_divide_middle = false, -- When set to true, left sections i.e. 'a','b' and 'c'
         -- can't take over the entire statusline even
         -- if neither of 'x', 'y' or 'z' are present.
 
@@ -101,7 +101,7 @@ return {
         -- This feature is only available in neovim 0.7 and higher.
 
         refresh = { -- sets how often lualine should refresh it's contents (in ms)
-          statusline = 1000, -- The refresh option sets minimum time that lualine tries
+          statusline = 500, -- The refresh option sets minimum time that lualine tries
           tabline = 1000, -- to maintain between refresh. It's not guarantied if situation
           winbar = 1000, -- arises that lualine needs to refresh itself before this time
           -- it'll do it.
@@ -120,95 +120,122 @@ return {
         end
       end
 
-      opts.sections = {
-        lualine_a = {
-          {
-            function()
-              return " "
-            end,
-            padding = { left = 0, right = 0 },
-          },
-        },
-        lualine_b = {
-          {
-            mode,
-            color = function()
-              return { fg = c.polar_night.light, bg = c.polar_night.bright }
-            end,
-          },
-          {
-            recording_macro,
-            color = function()
-              return { fg = c.polar_night.origin, bg = c.aurora.red }
-            end,
-            padding = { left = 0, right = 0 },
-          },
-          { "branch", icon = "", color = { fg = c.aurora.green } },
-          {
-            "diff",
-            symbols = {
-              added = " ",
-              modified = " ",
-              removed = " ",
-            },
-            source = function()
-              local gitsigns = vim.b.gitsigns_status_dict
-              if gitsigns then
-                return {
-                  added = gitsigns.added,
-                  modified = gitsigns.changed,
-                  removed = gitsigns.removed,
-                }
-              end
-            end,
-          },
-        },
-        lualine_c = {
-          {
-            "filetype",
-            colored = true, -- Displays filetype icon in color if set to true
-            icon_only = true, -- Display only an icon for filetype
-            padding = {
-              left = 1,
-              right = 1,
-            },
-          },
-          {
-            "filename",
-            file_status = true, -- Displays file status (readonly status, modified status)
-            newfile_status = false, -- Display new file status (new file means no write after created)
-            -- 0: Just the filename
-            -- 1: Relative path
-            -- 2: Absolute path
-            -- 3: Absolute path, with tilde as the home directory
-            -- 4: Filename and parent dir, with tilde as the home directory
-            path = 3,
+      local mode_color_comp = {
+        function()
+          return " "
+        end,
+        padding = { left = 0, right = 0 },
+      }
 
-            shorting_target = 60, -- Shortens path to leave 40 spaces in the window
-            -- for other components. (terrible name, any suggestions?)
-            symbols = {
-              modified = "●", -- Text to show when the file is modified.
-              readonly = "[-]", -- Text to show when the file is non-modifiable or readonly.
-              unnamed = "[No Name]", -- Text to show for unnamed buffers.
-              newfile = "[New]", -- Text to show for newly created file before first write
-            },
-          },
+      local mode_comp = {
+        mode,
+        color = { fg = c.polar_night.light, bg = c.polar_night.bright },
+      }
+
+      local macro_comp = {
+        recording_macro,
+        color = { fg = c.polar_night.origin, bg = c.aurora.red },
+        padding = { left = 0, right = 0 },
+      }
+      local branch_comp = { "branch", icon = "", color = { fg = c.aurora.green } }
+
+      local diff_comp = {
+        "diff",
+        symbols = {
+          added = " ",
+          modified = " ",
+          removed = " ",
         },
+        source = function()
+          local gitsigns = vim.b.gitsigns_status_dict
+          if gitsigns then
+            return {
+              added = gitsigns.added,
+              modified = gitsigns.changed,
+              removed = gitsigns.removed,
+            }
+          end
+        end,
+      }
+
+      local file_type_comp = {
+        "filetype",
+        colored = true, -- Displays filetype icon in color if set to true
+        icon_only = true, -- Display only an icon for filetype
+        padding = {
+          left = 1,
+          right = 1,
+        },
+        color = { fg = c.snow_storm.origin, bg = c.polar_night.origin },
+      }
+
+      local file_comp = {
+        "filename",
+        file_status = true, -- Displays file status (readonly status, modified status)
+        newfile_status = false, -- Display new file status (new file means no write after created)
+        -- 0: Just the filename
+        -- 1: Relative path
+        -- 2: Absolute path
+        -- 3: Absolute path, with tilde as the home directory
+        -- 4: Filename and parent dir, with tilde as the home directory
+        path = 3,
+
+        shorting_target = 60, -- Shortens path to leave 40 spaces in the window
+        -- for other components. (terrible name, any suggestions?)
+        symbols = {
+          modified = "●", -- Text to show when the file is modified.
+          readonly = "[-]", -- Text to show when the file is non-modifiable or readonly.
+          unnamed = "[No Name]", -- Text to show for unnamed buffers.
+          newfile = "[New]", -- Text to show for newly created file before first write
+        },
+        color = { fg = c.snow_storm.origin, bg = c.polar_night.origin },
+      }
+
+      local diag_comp = {
+        "diagnostics",
+        sources = { "nvim_lsp", "nvim_diagnostic" },
+        symbols = {
+          error = icons.error,
+          warn = icons.warning,
+          info = icons.info,
+          hint = icons.hint,
+        },
+      }
+
+      ---@diagnostic disable-next-line: unused-local
+      local buffers_comp = {
+        "buffers",
+        mode = 2,
+        symbols = {
+          modified = " ●", -- Text to show when the buffer is modified
+          alternate_file = "", -- Text to show to identify the alternate file
+          directory = "", -- Text to show when the buffer is a directory
+        },
+        filetype_names = {},
+        use_mode_colors = true,
+      }
+
+      local tab_comp = {
+        function()
+          return tostring(vim.fn.tabpagenr())
+        end,
+        cond = function()
+          return vim.fn.tabpagenr("$") > 1
+        end,
+        color = { fg = c.snow_storm.origin, bg = c.polar_night.origin },
+      }
+
+      opts.sections = {
+        lualine_a = { mode_color_comp },
+        lualine_b = {
+          mode_comp,
+          macro_comp,
+          branch_comp,
+          diff_comp,
+        },
+        lualine_c = {},
         lualine_x = {
-          {
-            "diagnostics",
-            -- Table of diagnostic sources, available sources are:
-            --   'nvim_lsp', 'nvim_diagnostic', 'nvim_workspace_diagnostic', 'coc', 'ale', 'vim_lsp'.
-            -- or a function that returns a table as such:
-            --   { error=error_cnt, warn=warn_cnt, info=info_cnt, hint=hint_cnt }
-            sources = { "nvim_lsp", "nvim_diagnostic" },
-            symbols = {
-              error = icons.error,
-              warn = icons.warning,
-              info = icons.info,
-              hint = icons.hint,
-            },
-          },
+          diag_comp,
         },
         lualine_y = {
           { "searchcount" },
@@ -223,30 +250,15 @@ return {
         lualine_z = {},
       }
       opts.tabline = {
-        lualine_a = {
-          {
-            "buffers",
-            mode = 2,
-            symbols = {
-              modified = " ●", -- Text to show when the buffer is modified
-              alternate_file = "", -- Text to show to identify the alternate file
-              directory = "", -- Text to show when the buffer is a directory
-            },
-            filetype_names = {},
-            use_mode_colors = true,
-          },
-        },
-        lualine_b = {},
-        lualine_c = {},
-        lualine_x = {},
-        lualine_y = {},
+        -- lualine_a = {
+        --   buffers_comp,
+        -- },
+        -- lualine_b = {},
+        lualine_c = { file_type_comp, file_comp },
+        -- lualine_x = {},
+        -- lualine_y = {},
         lualine_z = {
-          {
-            "tabs",
-            cond = function()
-              return vim.fn.tabpagenr("$") > 1
-            end,
-          },
+          tab_comp,
         },
       }
       opts.extensions = { "lazy", "man", "oil" }

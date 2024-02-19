@@ -7,7 +7,7 @@ end
 function M.lsp_attach(buffer)
   local lsp = vim.lsp.buf
   local fzf = function(func)
-    return string.format("<cmd>FzfLua %s<cr>", func)
+    return string.format("<cmd>FzfLua %s jump_to_single_result=true<cr>", func)
   end
   local pfx = "LSP: "
   local function bmap(mode, l, r, desc)
@@ -133,14 +133,15 @@ function M.init()
         "File Explorer",
       },
       f = {
-        name = "File",
-        b = { "<cmd>FzfLua buffers<cr>", "Find Buffers" },
+        name = "Find/File",
         H = { "<cmd>FzfLua files cwd=~", "Find Files (home)" },
+        b = { "<cmd>FzfLua buffers<cr>", "Find Buffers" },
+        f = { "<cmd>FzfLua find_files<cr>", "Find Files" },
         j = { "<cmd>FzfLua jumps<cr>", "Jumplist" },
         l = { "<cmd>FzfLua resume<cr>", "Last Search" },
         n = { "<cmd>enew<cr>", "New File" },
-        f = { "<cmd>FzfLua find_files<cr>", "Find Files" },
         r = { "<cmd>FzfLua oldfiles<cr>", "Open Recent Files" },
+        t = { "<cmd>FzfLua tabs<cr>", "Find Tabs" },
       },
       g = {
         name = "Git",
@@ -255,6 +256,7 @@ function M.init()
   }, { mode = "v" })
 
   -- Jump to buffers using Alt-[1-0]
+  -- NOTE: Only works when lualine buffers component is used
   for bufn = 1, 10, 1 do
     local cmd = string.format("<cmd>LualineBuffersJump! %s<cr>", bufn)
     local key = string.format("<A-%s>", bufn % 10)

@@ -15,7 +15,7 @@ maintain, which is why I used LazyVim in the first place. Hope not though!
 - \[x\] Nord theme
 - \[x\] Built-in LSP with completions and mason
 - \[x\] Treesitter
-- \[x\] Telescope
+- \[x\] fzf-lua
 - \[x\] lualine.nvim statusline and bufferline
 - \[x\] My favorite keybindings
 - \[x\] Nice git integration
