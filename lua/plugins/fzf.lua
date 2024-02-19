@@ -2,7 +2,30 @@ return {
   "ibhagwan/fzf-lua",
   dependencies = { "nvim-tree/nvim-web-devicons" },
   init = function()
-    require("fzf-lua").register_ui_select()
+    local select_config = {
+      winopts = {
+        split = "belowright new | resize " .. tostring(10),
+      },
+    }
+    --- Taken from dressing.nvim
+    --- https://github.com/stevearc/dressing.nvim/blob/6f212262061a2120e42da0d1e87326e8a41c0478/lua/dressing/select/fzf_lua.lua
+    ---@diagnostic disable-next-line: duplicate-set-field
+    vim.ui.select = function(items, opts, on_choice)
+      local ui_select = require("fzf-lua.providers.ui_select")
+      if select_config and not vim.tbl_isempty(select_config) then
+        -- Registering then unregistering sets the config options
+        ui_select.register(select_config, true)
+        ui_select.deregister(nil, true, true)
+      end
+      -- Defer the callback to allow the mode to fully switch back to normal after the fzf terminal
+      local deferred_on_choice = function(...)
+        local args = vim.F.pack_len(...)
+        vim.defer_fn(function()
+          on_choice(vim.F.unpack_len(args))
+        end, 10)
+      end
+      ui_select.ui_select(items, opts, deferred_on_choice)
+    end
   end,
   cmd = "FzfLua",
   opts = function()

@@ -87,7 +87,7 @@ return {
         component_separators = { left = "", right = "" },
         section_separators = { left = "", right = "" },
         disabled_filetypes = { -- Filetypes to disable lualine for.
-          statusline = {}, -- only ignores the ft for statusline.
+          statusline = { "fzf", "mason" }, -- only ignores the ft for statusline.
         },
 
         ignore_focus = { "TelescopePrompt" }, -- filetypes to hide the line
@@ -249,7 +249,7 @@ return {
           },
         },
       }
-      opts.extensions = { "fzf", "lazy", "man", "mason", "oil" }
+      opts.extensions = { "lazy", "man", "oil" }
       return opts
     end,
   },

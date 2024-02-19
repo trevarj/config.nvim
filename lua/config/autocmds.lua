@@ -79,6 +79,8 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd("TermOpen", {
   group = augroup("terminal_autoenter"),
   callback = function(_)
+    vim.opt_local.number = false
+    vim.opt_local.relativenumber = false
     vim.cmd.startinsert()
   end,
 })
