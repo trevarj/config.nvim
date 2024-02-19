@@ -2,17 +2,13 @@ return {
   "ibhagwan/fzf-lua",
   dependencies = { "nvim-tree/nvim-web-devicons" },
   init = function()
-    local select_config = {
-      winopts = {
-        split = "belowright new | resize " .. tostring(10),
-      },
-    }
+    local select_config = {}
     --- Taken from dressing.nvim
     --- https://github.com/stevearc/dressing.nvim/blob/6f212262061a2120e42da0d1e87326e8a41c0478/lua/dressing/select/fzf_lua.lua
     ---@diagnostic disable-next-line: duplicate-set-field
     vim.ui.select = function(items, opts, on_choice)
       local ui_select = require("fzf-lua.providers.ui_select")
-      if select_config and not vim.tbl_isempty(select_config) then
+      if select_config then
         -- Registering then unregistering sets the config options
         ui_select.register(select_config, true)
         ui_select.deregister(nil, true, true)
@@ -33,6 +29,7 @@ return {
     return {
       fzf_opts = {
         ["--pointer"] = "",
+        ["--info"] = "inline-right",
       },
       fzf_colors = {
         bg = { "bg", "Normal" },
@@ -49,23 +46,21 @@ return {
       },
       global_git_icons = false,
       winopts = {
-        height = 0.9,
-        width = 0.9,
+        height = 0.3,
+        width = 1.0,
+        row = 0.9,
+        col = 0,
+        border = { "─", "─", "─", "", "", "", "", "" },
         preview = {
           scrollbar = false,
         },
       },
       files = {
+        fzf_opts = {
+          ["--info"] = "inline-right",
+        },
         winopts = {
           preview = { hidden = "hidden" },
-          split = "belowright new",
-        },
-      },
-      lsp = {
-        code_actions = {
-          winopts = {
-            split = "belowright new | resize " .. tostring(12),
-          },
         },
       },
       git = {
@@ -88,6 +83,14 @@ return {
           ["?"] = { icon = " ", color = "blue" }, -- Untracked
         },
       },
+      grep = {
+        fzf_opts = {
+          ["--info"] = "inline-right",
+        },
+        winopts = {
+          height = 0.6,
+        },
+      },
       helptags = {
         actions = {
           ["default"] = actions.help_vert,
@@ -95,7 +98,6 @@ return {
       },
       manpages = {
         winopts = {
-          split = "belowright new",
           preview = { hidden = "hidden" },
         },
       },
