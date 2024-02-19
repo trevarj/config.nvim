@@ -26,12 +26,6 @@ return {
           keywords = { fg = colors.aurora.orange, bold = true },
           functions = { bold = true },
           variables = {},
-
-          -- To customize lualine/bufferline
-          bufferline = {
-            current = {},
-            modified = { italic = false },
-          },
         },
         -- colorblind mode
         -- see https://github.com/EdenEast/nightfox.nvim#colorblind
