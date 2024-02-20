@@ -6,7 +6,7 @@ local function nord_theme()
   nord.normal.a.bg = colors.frost.artic_water
   nord.normal.b.fg = colors.frost.artic_water
   nord.normal.b.bg = colors.polar_night.bright
-  nord.normal.c.fg = colors.snow_storm.origin
+  nord.normal.c.fg = colors.polar_night.light
   nord.normal.c.bg = colors.polar_night.bright
   nord.insert.a.bg = colors.aurora.orange
   nord.inactive.a.fg = colors.frost.artic_water
@@ -166,7 +166,6 @@ return {
           left = 1,
           right = 1,
         },
-        color = { fg = c.snow_storm.origin, bg = c.polar_night.origin },
       }
 
       local file_comp = {
@@ -188,7 +187,6 @@ return {
           unnamed = "[No Name]", -- Text to show for unnamed buffers.
           newfile = "[New]", -- Text to show for newly created file before first write
         },
-        color = { fg = c.snow_storm.origin, bg = c.polar_night.origin },
       }
 
       local diag_comp = {
@@ -233,7 +231,7 @@ return {
           branch_comp,
           diff_comp,
         },
-        lualine_c = {},
+        lualine_c = { file_type_comp, file_comp },
         lualine_x = {
           diag_comp,
         },
@@ -249,18 +247,7 @@ return {
         },
         lualine_z = {},
       }
-      opts.tabline = {
-        -- lualine_a = {
-        --   buffers_comp,
-        -- },
-        -- lualine_b = {},
-        lualine_c = { file_type_comp, file_comp },
-        -- lualine_x = {},
-        -- lualine_y = {},
-        lualine_z = {
-          tab_comp,
-        },
-      }
+      opts.tabline = {}
       opts.extensions = { "lazy", "man", "oil" }
       return opts
     end,

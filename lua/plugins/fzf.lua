@@ -42,6 +42,8 @@ return {
         fzf = {
           ["ctrl-d"] = "half-page-down",
           ["ctrl-u"] = "half-page-up",
+          ["ctrl-f"] = "preview-page-down",
+          ["ctrl-b"] = "preview-page-up",
         },
       },
       global_git_icons = false,
@@ -65,11 +67,13 @@ return {
       },
       git = {
         status = {
+          winopts = {
+            height = 1.0,
+          },
           actions = {
             ["right"] = false,
             ["left"] = false,
-            ["ctrl-u"] = { fn = actions.git_unstage, reload = true },
-            ["ctrl-s"] = { fn = actions.git_stage, reload = true },
+            ["ctrl-s"] = { fn = actions.git_stage_unstage, reload = true },
             ["ctrl-x"] = { fn = actions.git_reset, reload = true },
           },
         },

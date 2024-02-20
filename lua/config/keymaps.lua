@@ -227,6 +227,7 @@ function M.init()
     -- Buffers
     H = { "<cmd>bprev<cr>", "Previous Buffer" },
     L = { "<cmd>bnext<cr>", "Next Buffer" },
+    ["<C-b>"] = { "<cmd>FzfLua buffers<cr>", "Find Buffers" },
     -- Quick save
     ["<C-s>"] = { mode = { "n", "i", "x", "s" }, "<cmd>w<cr><esc>", "Save file" },
     -- Indent lines
@@ -262,12 +263,12 @@ function M.init()
 
   -- Jump to buffers using Alt-[1-0]
   -- NOTE: Only works when lualine buffers component is used
-  for bufn = 1, 10, 1 do
-    local cmd = string.format("<cmd>LualineBuffersJump! %s<cr>", bufn)
-    local key = string.format("<A-%s>", bufn % 10)
-    local desc = string.format("Buffer %s", bufn)
-    wk.register({ [key] = { cmd, desc } })
-  end
+  -- for bufn = 1, 10, 1 do
+  --   local cmd = string.format("<cmd>LualineBuffersJump! %s<cr>", bufn)
+  --   local key = string.format("<A-%s>", bufn % 10)
+  --   local desc = string.format("Buffer %s", bufn)
+  --   wk.register({ [key] = { cmd, desc } })
+  -- end
 end
 
 return M
