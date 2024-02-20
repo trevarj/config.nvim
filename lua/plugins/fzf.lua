@@ -84,6 +84,7 @@ return {
         },
       },
       grep = {
+        cwd_header = true,
         fzf_opts = {
           ["--info"] = "inline-right",
         },
