@@ -136,7 +136,7 @@ function M.init()
         name = "Find/File",
         H = { "<cmd>FzfLua files cwd=~", "Find Files (home)" },
         b = { "<cmd>FzfLua buffers<cr>", "Find Buffers" },
-        f = { "<cmd>FzfLua find_files<cr>", "Find Files" },
+        f = { "<cmd>FzfLua files<cr>", "Find Files" },
         j = { "<cmd>FzfLua jumps<cr>", "Jumplist" },
         l = { "<cmd>FzfLua resume<cr>", "Last Search" },
         n = { "<cmd>enew<cr>", "New File" },
