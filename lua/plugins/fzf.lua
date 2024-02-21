@@ -44,6 +44,7 @@ return {
           ["ctrl-u"] = "half-page-up",
           ["ctrl-f"] = "preview-page-down",
           ["ctrl-b"] = "preview-page-up",
+          ["ctrl-space"] = "select-all",
         },
       },
       global_git_icons = false,
