@@ -58,6 +58,21 @@ return {
       "hrsh7th/nvim-cmp",
     },
     event = "BufRead Cargo.toml",
+    init = function()
+      vim.api.nvim_create_autocmd("BufRead", {
+        group = vim.api.nvim_create_augroup("CmpSourceCargo", { clear = true }),
+        pattern = "Cargo.toml",
+        callback = function()
+          require("cmp").setup.buffer({
+            sources = {
+              { name = "crates" },
+              { name = "path" },
+              { name = "buffer" },
+            },
+          })
+        end,
+      })
+    end,
     opts = {
       src = {
         cmp = { enabled = true },
