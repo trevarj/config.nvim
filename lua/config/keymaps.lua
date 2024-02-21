@@ -147,7 +147,7 @@ function M.init()
         name = "Git",
         b = { "<cmd>FzfLua git_branches<cr>", "Branches" },
         c = { "<cmd>FzfLua git_commits<cr>", "Commits" },
-        d = { "<cmd>FzfLua changes<cr>", "Changes" },
+        C = { "<cmd>FzfLua changes<cr>", "Changes" },
         h = { "Hunks" },
         s = { "<cmd>FzfLua git_status<cr>", "Status" },
         t = { "<cmd>FzfLua tags<cr>", "Tags" },
