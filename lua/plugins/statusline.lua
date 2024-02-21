@@ -6,7 +6,7 @@ local function nord_theme()
   nord.normal.a.bg = colors.frost.artic_water
   nord.normal.b.fg = colors.frost.artic_water
   nord.normal.b.bg = colors.polar_night.bright
-  nord.normal.c.fg = colors.polar_night.light
+  nord.normal.c.fg = colors.frost.artic_water
   nord.normal.c.bg = colors.polar_night.bright
   nord.insert.a.bg = colors.aurora.orange
   nord.inactive.a.fg = colors.frost.artic_water
