@@ -26,6 +26,7 @@ return {
   cmd = "FzfLua",
   opts = function()
     local actions = require("fzf-lua.actions")
+    local lsp_icons = require("config.icons")
     return {
       fzf_opts = {
         ["--pointer"] = "",
@@ -86,6 +87,14 @@ return {
           ["C"] = { icon = " ", color = "yellow" }, -- Copied
           ["T"] = { icon = " ", color = "lightblue" }, -- Type Changed
           ["?"] = { icon = " ", color = "blue" }, -- Untracked
+        },
+      },
+      diagnostics = {
+        signs = {
+          ["Error"] = { text = lsp_icons.error, texthl = "DiagnosticError" },
+          ["Warn"] = { text = lsp_icons.warning, texthl = "DiagnosticWarn" },
+          ["Info"] = { text = lsp_icons.info, texthl = "DiagnosticInfo" },
+          ["Hint"] = { text = lsp_icons.hint, texthl = "DiagnosticHint" },
         },
       },
       grep = {

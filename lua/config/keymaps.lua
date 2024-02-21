@@ -164,13 +164,10 @@ function M.init()
         s = { "<cmd>FzfLua spell_suggest<cr>", "Spell Suggestions" },
         w = { "<cmd>FzfLua grep_cword<cr>", "Grep Word Under Cursor" },
         ["/"] = { "<cmd>FzfLua search_history<cr>", "Search History" },
-        -- t = {
-        --   name = "Tmux",
-        --   c = { "<cmd>Telescope tmux pane_contents<cr>", "Pane Contents" },
-        --   p = { "<cmd>Telescope tmux pane_file_paths<cr>", "Pane File Paths" },
-        --   s = { "<cmd>Telescope tmux sessions<cr>", "Sessions" },
-        --   w = { "<cmd>Telescope tmux windows<cr>", "Windows" },
-        -- },
+        t = {
+          name = "Tmux",
+          b = { "<cmd>FzfLua tmux_buffers<cr>", "Tmux Paste Buffers" },
+        },
       },
       t = { "<cmd>vsplit | terminal<cr>", "Terminal" },
       u = {
