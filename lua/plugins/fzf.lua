@@ -1,7 +1,28 @@
+local function tmux_file_paths(opts)
+  local fzf_lua = require("fzf-lua")
+  opts = opts or {}
+  opts.prompt = "Tmux File Paths> "
+  opts.previewer = "builtin"
+  opts.file_icons = true
+  opts.color_icons = true
+  opts.fn_transform = function(x)
+    return fzf_lua.make_entry.file(x, { file_icons = true, color_icons = true })
+  end
+  opts.actions = {
+    ["default"] = fzf_lua.actions.file_edit_or_qf,
+  }
+  fzf_lua.fzf_exec("./scripts/tmux_file_paths.sh", opts)
+end
+
 return {
   "ibhagwan/fzf-lua",
   dependencies = { "nvim-tree/nvim-web-devicons" },
   init = function()
+    -- register tmux_file_paths
+    vim.api.nvim_create_user_command("TmuxFilePaths", function()
+      tmux_file_paths({ cwd = vim.fn.stdpath("config") })
+    end, {})
+
     local select_config = {}
     --- Taken from dressing.nvim
     --- https://github.com/stevearc/dressing.nvim/blob/6f212262061a2120e42da0d1e87326e8a41c0478/lua/dressing/select/fzf_lua.lua
@@ -23,7 +44,7 @@ return {
       ui_select.ui_select(items, opts, deferred_on_choice)
     end
   end,
-  cmd = "FzfLua",
+  cmd = { "FzfLua", "TmuxFilePaths" },
   opts = function()
     local actions = require("fzf-lua.actions")
     local lsp_icons = require("config.icons")

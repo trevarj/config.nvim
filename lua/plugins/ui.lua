@@ -51,6 +51,7 @@ return {
           hl.ErrorMsg = { fg = c.aurora.red }
           hl.WhichKeyGroup = { fg = c.aurora.orange, bold = true }
           hl.FzfLuaBorder = { fg = c.polar_night.light }
+          hl.WinSeparator = { fg = c.aurora.orange }
           -- hl.NonText = { fg = c.polar_night.light }
         end,
       }
