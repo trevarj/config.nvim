@@ -17,19 +17,15 @@ rg_cmd() {
 	rg -o '(([~./])?([a-zA-Z-_./0-9])+\.([a-zA-Z0-9]+)(:\d*:\d*)?|\..*)'
 }
 
-# All tmux panes listed in the correct format for -t [target pane]
-panes=$(tmux list-panes -a -F '#{session_name}:#{window_index}.#{pane_index}')
-
 PATHS=()
-for pane in $panes; do
-
+# All tmux panes listed in the correct format for -t [target pane]
+while read -r pane; do
 	## current working directory for pane
 	pane_cwd=$(tmux display -pt "$pane" "#{pane_current_path}")
 
 	# read pane contents and filter through rg for files
 	# sort and eliminate duplicates (sort required for uniq)
-	maybe_paths=$(tmux capture-pane -p -t "$pane" -S -"$max_history" -E - | rg_cmd | sort | uniq)
-	for maybe_path in $maybe_paths; do
+	while read -ru3 maybe_path; do
 		debug "checking $pane_cwd for $maybe_path from $pane"
 
 		maybe_path="${maybe_path/#\~/$HOME}" # expand ~
@@ -56,8 +52,7 @@ for pane in $panes; do
 			debug "adding $maybe_real_path"
 			PATHS+=("$maybe_real_path$row_col")
 		fi
-
-	done
-done
+	done 3< <(tmux capture-pane -p -t "$pane" -S -"$max_history" -E - | rg_cmd | sort | uniq)
+done < <(tmux list-panes -a -F '#{session_name}:#{window_index}.#{pane_index}')
 
 printf "%s\n" "${PATHS[@]}" | sort | uniq
