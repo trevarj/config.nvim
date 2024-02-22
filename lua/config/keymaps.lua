@@ -164,12 +164,12 @@ function M.init()
         s = { "<cmd>FzfLua spell_suggest<cr>", "Spell Suggestions" },
         w = { "<cmd>FzfLua grep_cword<cr>", "Grep Word Under Cursor" },
         ["/"] = { "<cmd>FzfLua search_history<cr>", "Search History" },
-        t = {
-          name = "Tmux",
-          b = { "<cmd>FzfLua tmux_buffers<cr>", "Tmux Paste Buffers" },
-        },
       },
-      t = { "<cmd>vsplit | terminal<cr>", "Terminal" },
+      t = {
+        name = "Tmux",
+        b = { "<cmd>FzfLua tmux_buffers<cr>", "Tmux Paste Buffers" },
+        f = { "<cmd>TmuxFilePaths<cr>", "Tmux File Paths" },
+      },
       u = {
         name = "UI",
         c = { "<cmd>ColorizerToggle<cr>", "Toggle RGB Colors" },
@@ -204,6 +204,7 @@ function M.init()
         { "<cmd>FzfLua live_grep<cr>", "Grep" },
         { "<cmd>FzfLua grep_visual<cr>", "Grep", mode = "v" },
       },
+      ["\\"] = { "<cmd>vsplit | terminal<cr>", "Terminal" },
       ["|"] = { "<cmd>vsplit<cr>", "Vertical Split" },
       ["-"] = { "<cmd>split<cr>", "Horizontal Split" },
       ["`"] = { "<cmd>e #<cr>", "Previous Buffer" },
