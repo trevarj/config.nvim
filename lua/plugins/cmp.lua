@@ -18,6 +18,19 @@ return {
           ["<C-Space>"] = {
             c = cmp.mapping.confirm({ select = false }),
           },
+          ["<Tab>"] = {
+            c = function()
+              if cmp.visible() then
+                if #cmp.get_entries() > 1 then
+                  cmp.select_next_item()
+                else
+                  cmp.confirm({ select = false })
+                end
+              else
+                cmp.complete()
+              end
+            end,
+          },
         }),
         sources = cmp.config.sources({
           { name = "path" },
