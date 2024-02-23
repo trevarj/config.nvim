@@ -77,10 +77,18 @@ vim.api.nvim_create_autocmd("FileType", {
 
 -- automatically enter insert mode on terminal open
 vim.api.nvim_create_autocmd("TermOpen", {
-  group = augroup("terminal_autoenter"),
+  group = augroup("terminal"),
   callback = function(_)
     vim.opt_local.number = false
     vim.opt_local.relativenumber = false
     vim.cmd.startinsert()
+  end,
+})
+
+-- automatically close split on terminal kill
+vim.api.nvim_create_autocmd("TermClose", {
+  group = augroup("terminal"),
+  callback = function(_)
+    vim.api.nvim_win_hide(0)
   end,
 })
