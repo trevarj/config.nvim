@@ -10,7 +10,6 @@ vim.api.nvim_create_autocmd("BufRead", {
 return {
   {
     "mrcjkb/rustaceanvim",
-    -- version = "^3", -- Recommended
     ft = { "rust" },
     keys = {},
     config = function()
