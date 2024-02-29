@@ -65,6 +65,7 @@ return {
           require("cmp").setup.buffer({
             sources = {
               { name = "crates" },
+              { name = "nvim_lsp" },
               { name = "path" },
               { name = "buffer" },
             },
