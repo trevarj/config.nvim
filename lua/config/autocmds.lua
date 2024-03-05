@@ -89,6 +89,8 @@ vim.api.nvim_create_autocmd("TermOpen", {
 vim.api.nvim_create_autocmd("TermClose", {
   group = augroup("terminal_close"),
   callback = function(_)
-    vim.api.nvim_win_hide(0)
+    if #vim.api.nvim_tabpage_list_wins(0) > 1 then
+      vim.api.nvim_win_hide(0)
+    end
   end,
 })
