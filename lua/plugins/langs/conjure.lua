@@ -25,6 +25,8 @@ return {
       require("conjure.mapping")["on-filetype"]()
       -- Set configuration options here
       vim.g["conjure#debug"] = true
+      vim.g["conjure#filetype#scheme"] = "conjure.client.guile.socket"
+      vim.g["conjure#client#guile#socket#pipename"] = "/tmp/guile-socket"
     end,
   },
 }
