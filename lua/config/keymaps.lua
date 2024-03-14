@@ -101,6 +101,7 @@ function M.init()
   local wk = require("which-key")
   wk.register({
     ["<leader>"] = {
+      a = { "<cmd>e #<cr>", "Alternate Buffer" },
       b = {
         name = "Buffer",
         a = { "<cmd>e #<cr>", "Previous Buffer" },
@@ -148,6 +149,7 @@ function M.init()
         b = { "<cmd>FzfLua git_branches<cr>", "Branches" },
         c = { "<cmd>FzfLua git_commits<cr>", "Commits" },
         C = { "<cmd>FzfLua changes<cr>", "Changes" },
+        g = { "<cmd>Neogit kind=auto<cr>", "Neogit" },
         h = { "Hunks" },
         s = { "<cmd>FzfLua git_status<cr>", "Status" },
         t = { "<cmd>FzfLua tags<cr>", "Tags" },
@@ -207,7 +209,6 @@ function M.init()
       ["\\"] = { "<cmd>vsplit | terminal<cr>", "Terminal" },
       ["|"] = { "<cmd>vsplit<cr>", "Vertical Split" },
       ["-"] = { "<cmd>split<cr>", "Horizontal Split" },
-      ["`"] = { "<cmd>e #<cr>", "Previous Buffer" },
       ["\""] = { "<cmd>FzfLua registers<cr>", "Registers" },
     },
     ["[d"] = { "<cmd>lua vim.diagnostic.goto_prev()<cr>", "Prev Diagnostic" },

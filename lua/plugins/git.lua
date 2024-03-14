@@ -52,4 +52,24 @@ return {
       },
     },
   },
+  {
+    "NeogitOrg/neogit",
+    cmd = "Neogit",
+    dev = false,
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "sindrets/diffview.nvim",
+      "ibhagwan/fzf-lua",
+    },
+    opts = {
+      highlight = {
+        italic = false,
+      },
+      sections = {
+        recent = {
+          folded = false,
+        },
+      },
+    },
+  },
 }

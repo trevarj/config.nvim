@@ -13,9 +13,11 @@ maintain, which is why I used LazyVim in the first place. Hope not though!
 
 - \[x\] lazy.nvim
 - \[x\] Nord theme
-- \[x\] Built-in LSP with completions and mason
+- \[x\] LSP
+- \[x\] Completions
 - \[x\] Treesitter
+- \[x\] Oil.nvim (dired clone)
 - \[x\] fzf-lua
-- \[x\] lualine.nvim statusline and bufferline
+- \[x\] lualine.nvim statusline
 - \[x\] My favorite keybindings
-- \[x\] Nice git integration
+- \[x\] Git (gitsigns, diffview, neogit (magit clone))
