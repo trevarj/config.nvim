@@ -62,6 +62,7 @@ return {
       "ibhagwan/fzf-lua",
     },
     opts = {
+      disable_hint = true,
       highlight = {
         italic = false,
       },
