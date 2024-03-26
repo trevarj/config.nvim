@@ -52,6 +52,7 @@ local lazy_opts = {
     colorscheme = { "nord" },
   },
   ui = {
+    backdrop = 100,
     -- a number <1 is a percentage., >1 is a fixed size
     size = { width = 0.8, height = 0.8 },
     wrap = true, -- wrap the lines in the ui
