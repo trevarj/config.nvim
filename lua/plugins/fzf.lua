@@ -56,6 +56,11 @@ return {
         ["--pointer"] = "",
         ["--info"] = "inline-right",
       },
+      previewers = {
+        man = {
+          cmd = "man %s | col -bx",
+        }
+      },
       fzf_colors = {
         bg = { "bg", "Normal" },
         gutter = { "bg", "Normal" },
@@ -136,6 +141,7 @@ return {
         },
       },
       manpages = {
+        cmd = "man -k .",
         winopts = {
           preview = { hidden = "hidden" },
         },
