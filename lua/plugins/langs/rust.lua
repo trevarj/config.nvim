@@ -19,7 +19,7 @@ return {
         -- LSP configuration
         server = {
           on_attach = function(_, bufnr)
-            vim.lsp.inlay_hint.enable(bufnr)
+            vim.lsp.inlay_hint.enable(true)
             require("config.keymaps").lsp_attach(bufnr)
           end,
           settings = {

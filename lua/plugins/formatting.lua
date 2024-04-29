@@ -22,11 +22,15 @@ return {
       formatters_by_ft = {
         awk = { "awk" },
         lua = { "stylua" },
-        sh = { "shfmt" },
+        sh = { "shfmt", "-i 2", "-" },
         json = { "jq" },
         ["_"] = { "trim_whitespace" },
       },
-      formatters = {},
+      formatters = {
+        shfmt = {
+          prepend_args = { "-i", "2" },
+        }
+      },
       format_on_save = function(_)
         if not vim.g.disable_autoformat then
           return {

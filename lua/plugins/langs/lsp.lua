@@ -5,8 +5,8 @@ return {
     event = { "BufReadPost", "BufNewFile", "BufWritePre" },
     dependencies = {
       { "folke/neoconf.nvim", config = false },
-      { "folke/neodev.nvim", opts = {} },
-      { "j-hui/fidget.nvim", opts = {} },
+      { "folke/neodev.nvim",  opts = {} },
+      { "j-hui/fidget.nvim",  opts = {} },
     },
     opts = function()
       local icons = require("config.icons")
