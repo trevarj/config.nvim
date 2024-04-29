@@ -86,11 +86,11 @@ return {
         theme = theme(),
         component_separators = { left = "", right = "" },
         section_separators = { left = "", right = "" },
-        disabled_filetypes = { -- Filetypes to disable lualine for.
-          statusline = { "fzf", "mason" }, -- only ignores the ft for statusline.
+        disabled_filetypes = {    -- Filetypes to disable lualine for.
+          statusline = { "fzf" }, -- only ignores the ft for statusline.
         },
 
-        ignore_focus = { "TelescopePrompt" }, -- filetypes to hide the line
+        ignore_focus = {},            -- filetypes to hide the line
 
         always_divide_middle = false, -- When set to true, left sections i.e. 'a','b' and 'c'
         -- can't take over the entire statusline even
@@ -100,10 +100,10 @@ return {
         -- at bottom of neovim instead of one for every window).
         -- This feature is only available in neovim 0.7 and higher.
 
-        refresh = { -- sets how often lualine should refresh it's contents (in ms)
+        refresh = {         -- sets how often lualine should refresh it's contents (in ms)
           statusline = 500, -- The refresh option sets minimum time that lualine tries
-          tabline = 1000, -- to maintain between refresh. It's not guarantied if situation
-          winbar = 1000, -- arises that lualine needs to refresh itself before this time
+          tabline = 1000,   -- to maintain between refresh. It's not guarantied if situation
+          winbar = 1000,    -- arises that lualine needs to refresh itself before this time
           -- it'll do it.
 
           -- Also you can force lualine's refresh by calling refresh function
@@ -160,7 +160,7 @@ return {
 
       local file_type_comp = {
         "filetype",
-        colored = true, -- Displays filetype icon in color if set to true
+        colored = true,   -- Displays filetype icon in color if set to true
         icon_only = true, -- Display only an icon for filetype
         padding = {
           left = 1,
@@ -170,7 +170,7 @@ return {
 
       local file_comp = {
         "filename",
-        file_status = true, -- Displays file status (readonly status, modified status)
+        file_status = true,     -- Displays file status (readonly status, modified status)
         newfile_status = false, -- Display new file status (new file means no write after created)
         -- 0: Just the filename
         -- 1: Relative path
@@ -238,8 +238,8 @@ return {
         lualine_y = {
           { "searchcount" },
           { "selectioncount" },
-          { "location", padding = { left = 1, right = 1 } },
-          { "progress", separator = "" },
+          { "location",      padding = { left = 1, right = 1 } },
+          { "progress",      separator = "" },
           {
             lazy_status.updates,
             cond = lazy_status.has_updates,
