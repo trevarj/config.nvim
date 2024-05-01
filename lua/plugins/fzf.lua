@@ -108,6 +108,9 @@ return {
             ["ctrl-x"] = { fn = actions.git_reset, reload = true },
           },
         },
+        bcommits = {
+          prompt = "File Commits> ",
+        },
         icons = {
           ["M"] = { icon = " ", color = "yellow" }, -- Modified
           ["D"] = { icon = " ", color = "red" }, -- Deleted

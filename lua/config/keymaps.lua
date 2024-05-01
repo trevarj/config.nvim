@@ -56,17 +56,17 @@ end
 function M.nvim_surround()
   local pfx = "Surround: "
   local m = {
-    { "i", "<C-g>s", "<Plug>(nvim-surround-insert)", pfx .. "Cursor" },
-    { "i", "<C-g>S", "<Plug>(nvim-surround-insert-line)", pfx .. "Cursor newline" },
-    { "n", "gs", "<Plug>(nvim-surround-normal)", pfx .. "Motion" },
-    { "n", "gss", "<Plug>(nvim-surround-normal-cur)", pfx .. "Current line" },
-    { "n", "gsS", "<Plug>(nvim-surround-normal-line)", pfx .. "Current line on newlines" },
-    { "n", "gsN", "<Plug>(nvim-surround-normal-cur-line)", pfx .. "On newlines" },
-    { "x", "S", "<Plug>(nvim-surround-visual)", pfx .. "Visual selection" },
-    { "x", "gS", "<Plug>(nvim-surround-visual-line)", pfx .. "Visual selection on newlines" },
-    { "n", "ds", "<Plug>(nvim-surround-delete)", pfx .. "Delete" },
-    { "n", "cs", "<Plug>(nvim-surround-change)", pfx .. "Change pairs" },
-    { "n", "cS", "<Plug>(nvim-surround-change-line)", pfx .. "Change pairs on newlines" },
+    { "i", "<C-g>s", "<Plug>(nvim-surround-insert)",          pfx .. "Cursor" },
+    { "i", "<C-g>S", "<Plug>(nvim-surround-insert-line)",     pfx .. "Cursor newline" },
+    { "n", "gs",     "<Plug>(nvim-surround-normal)",          pfx .. "Motion" },
+    { "n", "gss",    "<Plug>(nvim-surround-normal-cur)",      pfx .. "Current line" },
+    { "n", "gsS",    "<Plug>(nvim-surround-normal-line)",     pfx .. "Current line on newlines" },
+    { "n", "gsN",    "<Plug>(nvim-surround-normal-cur-line)", pfx .. "On newlines" },
+    { "x", "S",      "<Plug>(nvim-surround-visual)",          pfx .. "Visual selection" },
+    { "x", "gS",     "<Plug>(nvim-surround-visual-line)",     pfx .. "Visual selection on newlines" },
+    { "n", "ds",     "<Plug>(nvim-surround-delete)",          pfx .. "Delete" },
+    { "n", "cs",     "<Plug>(nvim-surround-change)",          pfx .. "Change pairs" },
+    { "n", "cS",     "<Plug>(nvim-surround-change-line)",     pfx .. "Change pairs on newlines" },
   }
   local keys = {}
   for _, v in ipairs(m) do
@@ -77,10 +77,10 @@ end
 
 function M.comment()
   return {
-    { "gc", mode = "n", desc = "Comment" },
+    { "gc",  mode = "n", desc = "Comment" },
     { "gcc", mode = "n", desc = "Comment line" },
-    { "gc", mode = "x", desc = "Comment selection" },
-    { "gc", mode = "o", desc = "Comment textobject" },
+    { "gc",  mode = "x", desc = "Comment selection" },
+    { "gc",  mode = "o", desc = "Comment textobject" },
   }
 end
 
@@ -148,6 +148,7 @@ function M.init()
         name = "Git",
         b = { "<cmd>FzfLua git_branches<cr>", "Branches" },
         c = { "<cmd>FzfLua git_commits<cr>", "Commits" },
+        f = { "<cmd>FzfLua git_bcommits<cr>", "File Commit History" },
         C = { "<cmd>FzfLua changes<cr>", "Changes" },
         g = { "<cmd>Neogit kind=auto<cr>", "Neogit" },
         h = { "Hunks" },
@@ -203,7 +204,7 @@ function M.init()
       },
       [" "] = { "<cmd>FzfLua files<cr>", "Find Files" },
       ["/"] = {
-        { "<cmd>FzfLua live_grep<cr>", "Grep" },
+        { "<cmd>FzfLua live_grep<cr>",   "Grep" },
         { "<cmd>FzfLua grep_visual<cr>", "Grep", mode = "v" },
       },
       ["\\"] = { "<cmd>vsplit | terminal<cr>", "Terminal" },
@@ -234,7 +235,7 @@ function M.init()
     ["<"] = { mode = { "v" }, "<gv", "De-dent" },
     ["<esc>"] = {
       { mode = { "n", "i" }, "<cmd>noh<cr><esc>", "Clear Search Highlighting" },
-      { mode = { "t" }, "<C-\\><C-n>", "Escape terminal mode" },
+      { mode = { "t" },      "<C-\\><C-n>",       "Escape terminal mode" },
     },
     -- Insert mode help
     ["<C-e>"] = { mode = "i", "<esc>A", "Insert end of line" },
